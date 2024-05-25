@@ -27,6 +27,14 @@ public class CategoryEntity {
     @Column(name = "name", unique = true)
     private String name;
 
+    @ManyToMany(targetEntity = BudgetEntity.class, fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "budget_has_category",
+            joinColumns = @JoinColumn(name = "category_id"),
+            inverseJoinColumns = @JoinColumn(name = "budget_id")
+    )
+    private List<BudgetEntity> budgets;
+
     @ManyToOne(targetEntity = UserEntity.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private UserEntity user;
