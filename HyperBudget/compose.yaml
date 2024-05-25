@@ -1,10 +1,16 @@
 services:
   mysql:
-    image: 'mysql:latest'
+    image: 'mysql:8'
     environment:
-      - 'MYSQL_DATABASE=mydatabase'
-      - 'MYSQL_PASSWORD=secret'
-      - 'MYSQL_ROOT_PASSWORD=verysecret'
-      - 'MYSQL_USER=myuser'
+      - 'MYSQL_DATABASE=budgetdb'
+      - 'MYSQL_PASSWORD=dev1234'
+      - 'MYSQL_ROOT_PASSWORD=dev4321'
+      - 'MYSQL_USER=apibudget'
     ports:
-      - '3306'
+      - '3307:3306'
+    volumes:
+      - type: volume
+      - source: budgetdb
+      - target: /var/lib/mysql
+volumes:
+  budgetdb:
