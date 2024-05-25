@@ -24,7 +24,7 @@ public class CategoryEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(name = "id")
     private Long id;
 
-    @Column(name = "name", unique = true)
+    @Column(name = "name")
     private String name;
 
     @ManyToMany(targetEntity = BudgetEntity.class, fetch = FetchType.LAZY)

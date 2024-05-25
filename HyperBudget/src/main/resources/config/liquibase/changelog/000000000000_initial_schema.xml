@@ -69,7 +69,7 @@
                 <constraints primaryKey="true" nullable="false" primaryKeyName="pk_user"/>
             </column>
             <column name="email" type="varchar(45)">
-                <constraints nullable="false"/>
+                <constraints nullable="false" unique="true"/>
             </column>
             <column name="username" type="varchar(45)">
                 <constraints nullable="false"/>
@@ -91,7 +91,7 @@
         <addForeignKeyConstraint
             baseTableName="user" baseColumnNames="user_preference_id"
             constraintName="fk_user_user_preference" referencedTableName="user_preference"
-            referencedColumnNames="id"
+            referencedColumnNames="id" onDelete="CASCADE" onUpdate="CASCADE"
         />
 
         <createIndex tableName="user" indexName="fk_user_user_preference_idx" unique="false">
@@ -106,7 +106,7 @@
             <column name="name" type="varchar(45)">
                 <constraints nullable="false"/>
             </column>
-            <column name="amount" type="varchar(45)">
+            <column name="amount" type="decimal(10,2)">
                 <constraints nullable="false"/>
             </column>
             <column name="date" type="date">
@@ -159,7 +159,10 @@
             <column name="id" type="int" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false" primaryKeyName="pk_user"/>
             </column>
-            <column name="max_amount" type="varchar(45)">
+            <column name="max_amount" type="decimal(10, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="start_date" type="date">
                 <constraints nullable="false"/>
             </column>
             <column name="user_id" type="int">
@@ -233,7 +236,7 @@
             <column name="name" type="varchar(45)">
                 <constraints nullable="false"/>
             </column>
-            <column name="amount" type="varchar(45)">
+            <column name="amount" type="decimal(10,2)">
                 <constraints nullable="false"/>
             </column>
             <column name="date" type="date">
@@ -285,42 +288,42 @@
             delimiter $$
             USE `budgetdb`$$
             CREATE DEFINER = CURRENT_USER TRIGGER `budgetdb`.`expense_BEFORE_INSERT` BEFORE INSERT ON `expense` FOR EACH ROW
-                        BEGIN
+            BEGIN
                 DECLARE category_count INT;
                 SET category_count = (SELECT COUNT(*) FROM expense_has_category WHERE expense_id = NEW.expense_id);
                 IF category_count = 0 THEN
                     SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'An expense must be associated with at least one category';
-                        END IF;
+                END IF;
             END$$
 
             USE `budgetdb`$$
             CREATE DEFINER = CURRENT_USER TRIGGER `budgetdb`.`budget_BEFORE_INSERT` BEFORE INSERT ON `budget` FOR EACH ROW
-                        BEGIN
+            BEGIN
                 DECLARE category_count INT;
                 SET category_count = (SELECT COUNT(*) FROM budget_has_category WHERE budget_id = NEW.budget_id);
                 IF category_count = 0 THEN
                     SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'A budget must be associated with at least one category';
-                        END IF;
+                END IF;
             END$$
 
             USE `budgetdb`$$
             CREATE DEFINER = CURRENT_USER TRIGGER `budgetdb`.`expense_BEFORE_INSERT` BEFORE INSERT ON `expense` FOR EACH ROW
-                        BEGIN
+            BEGIN
                 DECLARE category_count INT;
                 SET category_count = (SELECT COUNT(*) FROM expense_has_category WHERE expense_id = NEW.expense_id);
                 IF category_count = 0 THEN
                     SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'An expense must be associated with at least one category';
-                        END IF;
+                END IF;
             END$$
 
             USE `budgetdb`$$
             CREATE DEFINER = CURRENT_USER TRIGGER `budgetdb`.`income_has_category_BEFORE_INSERT` BEFORE INSERT ON `income_has_category` FOR EACH ROW
-                        BEGIN
+            BEGIN
                 DECLARE category_count INT;
                 SET category_count = (SELECT COUNT(*) FROM income_has_category WHERE income_id = NEW.income_id);
                 IF category_count = 0 THEN
                     SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'An income must be associated with at least one category';
-                        END IF;
+                END IF;
             END$$
 
             delimiter ;
