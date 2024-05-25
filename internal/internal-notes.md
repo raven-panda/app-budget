@@ -22,12 +22,14 @@ Au niveau des tables :
 
 ### Structure API REST
 
+```
 fr.ravenpanda.hyperbudget
   +- HyperBudgetApp
   |
   +- /core
   |  +- /config
-  |  |  +- Security
+  |  |  +- ApiConfig
+  |  |  +- SecurityConfig
   |  |
   |  +- service
   |  +- serializer
@@ -46,6 +48,7 @@ fr.ravenpanda.hyperbudget
   |  +- BudgetEntity
   |  +- BudgetRepository
   +- etc...
+```
 
 ## Front-End
 
