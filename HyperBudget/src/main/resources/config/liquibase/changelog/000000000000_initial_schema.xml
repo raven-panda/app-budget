@@ -16,10 +16,10 @@
                 <foreignKeyConstraintExists foreignKeyName="fk_budget_user" />
             </or>
             <or>
-                <foreignKeyConstraintExists foreignKeyName="fk_budget_has_expense_budget" />
+                <foreignKeyConstraintExists foreignKeyName="fk_budget_has_category_budget" />
             </or>
             <or>
-                <foreignKeyConstraintExists foreignKeyName="fk_budget_has_expense_category" />
+                <foreignKeyConstraintExists foreignKeyName="fk_budget_has_category_category" />
             </or>
             <or>
                 <foreignKeyConstraintExists foreignKeyName="fk_expense_has_category_expense" />
@@ -186,9 +186,7 @@
 
         <!-- Budget Has Category Table -->
         <createTable ifNotExists="true" tableName="budget_has_category">
-            <column name="budget_id" type="int">
-                <constraints primaryKey="true" primaryKeyName="pk_budget_id" nullable="false"/>
-            </column>
+            <column name="budget_id" type="int"/>
             <column name="category_id" type="int">
                 <constraints primaryKey="true" primaryKeyName="pk_category_id" nullable="false"/>
             </column>
@@ -196,21 +194,19 @@
 
         <addForeignKeyConstraint
             baseTableName="budget_has_category" baseColumnNames="budget_id"
-            constraintName="fk_budget_has_expense_budget" referencedTableName="budget"
+            constraintName="fk_budget_has_category_budget" referencedTableName="budget"
             referencedColumnNames="id"
         />
 
         <addForeignKeyConstraint
             baseTableName="budget_has_category" baseColumnNames="category_id"
-            constraintName="fk_budget_has_expense_category" referencedTableName="category"
+            constraintName="fk_budget_has_category_category" referencedTableName="category"
             referencedColumnNames="id"
         />
 
         <!-- Expense Has Category Table -->
         <createTable ifNotExists="true" tableName="expense_has_category">
-            <column name="expense_id" type="int">
-                <constraints primaryKey="true" primaryKeyName="pk_expense_id" nullable="false"/>
-            </column>
+            <column name="expense_id" type="int"/>
             <column name="category_id" type="int">
                 <constraints primaryKey="true" primaryKeyName="pk_category_id" nullable="false"/>
             </column>
@@ -263,9 +259,7 @@
 
         <!-- Income Has Category Table -->
         <createTable tableName="income_has_category">
-            <column name="income_id" type="int">
-                <constraints primaryKey="true" primaryKeyName="pk_income_id" nullable="false"/>
-            </column>
+            <column name="income_id" type="int"/>
             <column name="category_id" type="int">
                 <constraints primaryKey="true" primaryKeyName="pk_category_id" nullable="false"/>
             </column>
