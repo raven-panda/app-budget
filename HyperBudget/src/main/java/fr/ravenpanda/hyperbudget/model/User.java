@@ -4,6 +4,8 @@ import fr.ravenpanda.hyperbudget.common.list.PeriodTypeEnum;
 import fr.ravenpanda.hyperbudget.common.list.PreferredThemeEnum;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -43,10 +45,12 @@ public class User {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
-    @Column(nullable = false, columnDefinition = "ENUM('LIGHT', 'DARK')")
+    @Column(nullable = false, columnDefinition = "enum('LIGHT', 'DARK')")
+    @Enumerated(EnumType.STRING)
     private PreferredThemeEnum theme;
 
-    @Column(nullable = false, columnDefinition = "ENUM('MONTHLY', 'YEARLY')")
+    @Column(nullable = false, columnDefinition = "enum('MONTHLY', 'YEARLY')")
+    @Enumerated(EnumType.STRING)
     private PeriodTypeEnum periodType;
 
     @Column(name = "edit_warn", nullable = false)
