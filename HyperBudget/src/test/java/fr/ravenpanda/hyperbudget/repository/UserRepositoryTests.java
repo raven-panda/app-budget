@@ -118,4 +118,15 @@ public class UserRepositoryTests {
         assertThat(updatedUser.getIsEditWarnEnabled()).isFalse();
     }
 
+    @Test
+    public void UserRepository_Delete_ReturnVoid() {
+        User savedUser = userRepository.save(UserTests.user1);
+        userRepository.deleteById(savedUser.getId());
+
+        User foundUser = userRepository.findById(savedUser.getId()).orElse(null);
+
+        assertThat(savedUser).isNotNull();
+        assertThat(foundUser).isNull();
+    }
+
 }
