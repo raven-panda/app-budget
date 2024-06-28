@@ -2,6 +2,7 @@ package fr.ravenpanda.hyperbudget.model;
 
 import fr.ravenpanda.hyperbudget.common.list.PeriodTypeEnum;
 import fr.ravenpanda.hyperbudget.common.list.PreferredThemeEnum;
+import fr.ravenpanda.hyperbudget.common.list.RoleEnum;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -15,6 +16,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.ReadOnlyProperty;
 
 import java.time.LocalDateTime;
 
@@ -28,6 +30,10 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(nullable = false, columnDefinition = "enum('USER', 'ADMIN')")
+    @Enumerated(EnumType.STRING)
+    private RoleEnum role;
+
     @Column(nullable = false, unique = true)
     private String email;
 
@@ -37,7 +43,7 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
+    @Column(nullable = false, updatable = false)
     @CreationTimestamp
     private LocalDateTime createdAt;
 
@@ -53,6 +59,6 @@ public class User {
     @Enumerated(EnumType.STRING)
     private PeriodTypeEnum periodType;
 
-    @Column(name = "edit_warn", nullable = false)
+    @Column(name = "edit_warn", nullable = false, insertable = false)
     private Boolean isEditWarnEnabled;
 }
