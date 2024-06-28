@@ -9,38 +9,20 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-@Service
-public class UserService {
+public interface UserService {
 
-    @Autowired
-    private UserRepository userRepository;
+    Optional<User> findById(Integer id);
 
-    public Optional<User> findById(Integer id) {
-        return userRepository.findById(id);
-    }
+    List<User> findAll();
 
-    public List<User> findAll() {
-        return userRepository.findAll();
-    }
+    Optional<User> findByEmail(String email);
 
-    public Optional<User> findByEmail(String email) {
-        return userRepository.findByEmail(email);
-    }
+    Optional<User> findByUsername(String username);
 
-    public Optional<User> findByUsername(String username) {
-        return userRepository.findByUsername(username);
-    }
+    List<User> findAllByRole(RoleEnum role);
 
-    public List<User> findAllByRole(RoleEnum role) {
-        return userRepository.findAllByRole(role);
-    }
+    void deleteById(Integer id);
 
-    public void deleteById(Integer id) {
-        userRepository.deleteById(id);
-    }
-
-    public User save(User user) {
-        return userRepository.save(user);
-    }
+    User save(User user);
 
 }
