@@ -3,7 +3,6 @@ package fr.ravenpanda.hyperbudget.controller;
 import fr.ravenpanda.hyperbudget.common.list.RoleEnum;
 import fr.ravenpanda.hyperbudget.dto.UserDto;
 import fr.ravenpanda.hyperbudget.model.User;
-import fr.ravenpanda.hyperbudget.repository.UserRepository;
 import fr.ravenpanda.hyperbudget.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
