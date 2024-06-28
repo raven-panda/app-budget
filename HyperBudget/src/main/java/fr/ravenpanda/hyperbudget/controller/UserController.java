@@ -3,6 +3,7 @@ package fr.ravenpanda.hyperbudget.controller;
 import fr.ravenpanda.hyperbudget.common.list.RoleEnum;
 import fr.ravenpanda.hyperbudget.model.User;
 import fr.ravenpanda.hyperbudget.repository.UserRepository;
+import fr.ravenpanda.hyperbudget.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,52 +20,52 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
 
-    private UserRepository repository;
+    private UserService service;
 
-    public UserController(UserRepository repository) {
-        this.repository = repository;
+    public UserController(UserService service) {
+        this.service = service;
     }
 
     @GetMapping("/all")
     public ResponseEntity<List<User>> getAll() {
-        return ResponseEntity.ok(repository.findAll());
+        return ResponseEntity.ok(service.findAll());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<User> getById(@PathVariable Integer id) {
-        return repository.findById(id).isEmpty()
+        return service.findById(id).isEmpty()
             ? ResponseEntity.notFound().build()
-            : ResponseEntity.ok(repository.findById(id).orElse(null));
+            : ResponseEntity.ok(service.findById(id).orElse(null));
     }
 
     @GetMapping("/search/email")
     public ResponseEntity<User> getByEmail(@RequestParam String value) {
-        return repository.findByEmail(value).isEmpty()
+        return service.findByEmail(value).isEmpty()
             ? ResponseEntity.notFound().build()
-            : ResponseEntity.ok(repository.findByEmail(value).orElse(null));
+            : ResponseEntity.ok(service.findByEmail(value).orElse(null));
     }
 
     @GetMapping("/search/username")
     public ResponseEntity<User> getByUsername(@RequestParam String value) {
-        return repository.findByUsername(value).isEmpty()
+        return service.findByUsername(value).isEmpty()
             ? ResponseEntity.notFound().build()
-            : ResponseEntity.ok(repository.findByUsername(value).orElse(null));
+            : ResponseEntity.ok(service.findByUsername(value).orElse(null));
     }
 
     @GetMapping("/search/role")
     public ResponseEntity<List<User>> getAllByRole(@RequestParam RoleEnum value) {
-        return ResponseEntity.ok(repository.findAllByRole(value));
+        return ResponseEntity.ok(service.findAllByRole(value));
     }
 
     @PostMapping
     public ResponseEntity<User> save(@RequestBody User user) {
-        return ResponseEntity.ok(repository.save(user));
+        return ResponseEntity.ok(service.save(user));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<User> update(@PathVariable Integer id, @RequestBody User user) {
-        if(repository.findById(id).isEmpty()) return ResponseEntity.notFound().build();
-        return ResponseEntity.ok(repository.save(user));
+        if(service.findById(id).isEmpty()) return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(service.save(user));
     }
 
 }

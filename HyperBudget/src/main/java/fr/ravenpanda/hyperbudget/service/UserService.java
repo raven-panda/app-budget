@@ -19,7 +19,7 @@ public class UserService {
         return userRepository.findById(id);
     }
 
-    public Iterable<User> findAll() {
+    public List<User> findAll() {
         return userRepository.findAll();
     }
 
