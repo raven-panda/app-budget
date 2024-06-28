@@ -2,6 +2,7 @@ package fr.ravenpanda.hyperbudget.repository;
 
 import fr.ravenpanda.hyperbudget.common.list.PeriodTypeEnum;
 import fr.ravenpanda.hyperbudget.common.list.PreferredThemeEnum;
+import fr.ravenpanda.hyperbudget.common.list.RoleEnum;
 import fr.ravenpanda.hyperbudget.data.UserTests;
 import fr.ravenpanda.hyperbudget.model.User;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -54,6 +55,43 @@ public class UserRepositoryTests {
 
         assertThat(foundUser).isNotNull();
         assertThat(foundUser.getId()).isEqualTo(savedUser.getId());
+    }
+
+    @Test
+    public void UserRepository_GetByEmail_ReturnUser() {
+        User savedUser = userRepository.save(UserTests.user1);
+        User foundUser = userRepository.findByEmail(savedUser.getEmail()).orElse(null);
+
+        assertThat(foundUser).isNotNull();
+        assertThat(foundUser.getId()).isEqualTo(savedUser.getId());
+    }
+
+    @Test
+    public void UserRepository_GetByUsername_ReturnUser() {
+        User savedUser = userRepository.save(UserTests.user1);
+        User foundUser = userRepository.findByUsername(savedUser.getUsername()).orElse(null);
+
+        assertThat(foundUser).isNotNull();
+        assertThat(foundUser.getId()).isEqualTo(savedUser.getId());
+    }
+
+    @Test
+    public void UserRepository_GetAllByRole_ReturnUser() {
+        User savedUser1 = userRepository.save(UserTests.user1);
+        User savedUser2 = userRepository.save(UserTests.user2);
+        User savedAdmin = userRepository.save(UserTests.admin1);
+        List<User> usersList = userRepository.findAllByRole(RoleEnum.USER);
+
+        assertThat(UserTests.user1).isNotNull();
+        assertThat(UserTests.user2).isNotNull();
+        assertThat(UserTests.admin1).isNotNull();
+        assertThat(savedUser1.getId()).isGreaterThan(0);
+        assertThat(savedUser2.getId()).isGreaterThan(0);
+        assertThat(savedAdmin.getId()).isGreaterThan(0);
+
+        assertThat(usersList).isNotNull();
+        assertThat(usersList.size()).isEqualTo(2);
+        assertThat(usersList).contains(savedUser1, savedUser2).doesNotContain(savedAdmin);
     }
 
     @Test
