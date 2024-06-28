@@ -1,28 +1,35 @@
 package fr.ravenpanda.hyperbudget.service;
 
 import fr.ravenpanda.hyperbudget.common.list.RoleEnum;
+import fr.ravenpanda.hyperbudget.dto.UserDto;
 import fr.ravenpanda.hyperbudget.model.User;
-import fr.ravenpanda.hyperbudget.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface UserService {
 
-    Optional<User> findById(Integer id);
+    UserDto findById(Integer id);
+    Boolean existsById(Integer id);
 
-    List<User> findAll();
+    List<UserDto> findAll();
 
-    Optional<User> findByEmail(String email);
+    UserDto findByEmail(String email);
+    Boolean existsByEmail(String email);
 
-    Optional<User> findByUsername(String username);
+    UserDto findByUsername(String username);
+    Boolean existsByUsername(String username);
 
-    List<User> findAllByRole(RoleEnum role);
+    List<UserDto> findAllByRole(RoleEnum role);
 
-    void deleteById(Integer id);
+    Boolean deleteById(Integer id);
 
-    User save(User user);
+    UserDto save(UserDto user);
+
+    UserDto update(Integer id, User user);
+
+    UserDto toDto(User user);
+
+    User toEntity(UserDto userDto);
 
 }

@@ -1,6 +1,7 @@
 package fr.ravenpanda.hyperbudget.controller;
 
 import fr.ravenpanda.hyperbudget.common.list.RoleEnum;
+import fr.ravenpanda.hyperbudget.dto.UserDto;
 import fr.ravenpanda.hyperbudget.model.User;
 import fr.ravenpanda.hyperbudget.repository.UserRepository;
 import fr.ravenpanda.hyperbudget.service.UserService;
@@ -28,52 +29,48 @@ public class UserController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<User>> getAll() {
+    public ResponseEntity<List<UserDto>> getAll() {
         return ResponseEntity.ok(service.findAll());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> getById(@PathVariable Integer id) {
-        return service.findById(id).isEmpty()
-            ? ResponseEntity.noContent().build()
-            : ResponseEntity.ok(service.findById(id).orElse(null));
+    public ResponseEntity<UserDto> getById(@PathVariable Integer id) {
+        UserDto user = service.findById(id);
+        return service.existsById(id)
+            ? ResponseEntity.ok(service.findById(id))
+            : ResponseEntity.noContent().build();
     }
 
     @GetMapping("/search/email")
-    public ResponseEntity<User> getByEmail(@RequestParam String value) {
-        return service.findByEmail(value).isEmpty()
-            ? ResponseEntity.noContent().build()
-            : ResponseEntity.ok(service.findByEmail(value).orElse(null));
+    public ResponseEntity<UserDto> getByEmail(@RequestParam String value) {
+        return service.existsByEmail(value) ? ResponseEntity.ok(service.findByEmail(value)) : ResponseEntity.noContent().build();
     }
 
     @GetMapping("/search/username")
-    public ResponseEntity<User> getByUsername(@RequestParam String value) {
-        return service.findByUsername(value).isEmpty()
-            ? ResponseEntity.noContent().build()
-            : ResponseEntity.ok(service.findByUsername(value).orElse(null));
+    public ResponseEntity<UserDto> getByUsername(@RequestParam String value) {
+        return service.existsByUsername(value) ? ResponseEntity.ok(service.findByUsername(value)) : ResponseEntity.noContent().build();
     }
 
     @GetMapping("/search/role")
-    public ResponseEntity<List<User>> getAllByRole(@RequestParam RoleEnum value) {
+    public ResponseEntity<List<UserDto>> getAllByRole(@RequestParam RoleEnum value) {
         return ResponseEntity.ok(service.findAllByRole(value));
     }
 
     @PostMapping
-    public ResponseEntity<User> save(@RequestBody User user) {
+    public ResponseEntity<UserDto> save(@RequestBody UserDto user) {
         return ResponseEntity.ok(service.save(user));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<User> update(@PathVariable Integer id, @RequestBody User user) {
-        if(service.findById(id).isEmpty()) return ResponseEntity.noContent().build();
-        return ResponseEntity.ok(service.save(user));
+    public ResponseEntity<UserDto> update(@PathVariable Integer id, @RequestBody User user) {
+        UserDto updatedDto = service.update(id, user);
+        return updatedDto != null ? ResponseEntity.ok(updatedDto) : ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<User> update(@PathVariable Integer id) {
-        if(service.findById(id).isEmpty()) return ResponseEntity.noContent().build();
-        service.deleteById(id);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<Boolean> update(@PathVariable Integer id) {
+        Boolean success = service.deleteById(id);
+        return success ? ResponseEntity.ok(true) : ResponseEntity.noContent().build();
     }
 
 }
