@@ -5,6 +5,7 @@ import fr.ravenpanda.hyperbudget.model.User;
 import fr.ravenpanda.hyperbudget.repository.UserRepository;
 import fr.ravenpanda.hyperbudget.service.UserService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,21 +35,21 @@ public class UserController {
     @GetMapping("/{id}")
     public ResponseEntity<User> getById(@PathVariable Integer id) {
         return service.findById(id).isEmpty()
-            ? ResponseEntity.notFound().build()
+            ? ResponseEntity.noContent().build()
             : ResponseEntity.ok(service.findById(id).orElse(null));
     }
 
     @GetMapping("/search/email")
     public ResponseEntity<User> getByEmail(@RequestParam String value) {
         return service.findByEmail(value).isEmpty()
-            ? ResponseEntity.notFound().build()
+            ? ResponseEntity.noContent().build()
             : ResponseEntity.ok(service.findByEmail(value).orElse(null));
     }
 
     @GetMapping("/search/username")
     public ResponseEntity<User> getByUsername(@RequestParam String value) {
         return service.findByUsername(value).isEmpty()
-            ? ResponseEntity.notFound().build()
+            ? ResponseEntity.noContent().build()
             : ResponseEntity.ok(service.findByUsername(value).orElse(null));
     }
 
@@ -64,8 +65,15 @@ public class UserController {
 
     @PutMapping("/{id}")
     public ResponseEntity<User> update(@PathVariable Integer id, @RequestBody User user) {
-        if(service.findById(id).isEmpty()) return ResponseEntity.notFound().build();
+        if(service.findById(id).isEmpty()) return ResponseEntity.noContent().build();
         return ResponseEntity.ok(service.save(user));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<User> update(@PathVariable Integer id) {
+        if(service.findById(id).isEmpty()) return ResponseEntity.noContent().build();
+        service.deleteById(id);
+        return ResponseEntity.ok().build();
     }
 
 }
