@@ -3,4 +3,5 @@
 
     <include file="classpath:config/liquibase/changelog/000000000000_initial_schema.xml" relativeToChangelogFile="false" />
     <include file="classpath:config/liquibase/changelog/061420242001_created_user_table.xml" relativeToChangelogFile="false" />
+    <include file="classpath:config/liquibase/changelog/062820240951_added_role_column.xml" relativeToChangelogFile="false" />
 </databaseChangeLog>
