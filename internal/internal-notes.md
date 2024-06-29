@@ -17,8 +17,22 @@ Au niveau des tables :
   - Préfère budget annuel/mensuel
   - Enregistrer si préfère pas voir avertissement quant à la modif
 - Expense
-- Expense Category
 - Max Budget
+- Income
+  - Nom, montant, date
+- Category (Expense, Budget & Income)
+  - Nom, icône
+  - Catégories par défaut :
+    - Assurances
+    - Véhicule / Transports
+    - Loisirs / Vie quotidienne
+    - Alimentation
+    - Numérique
+    - Logement / Maison
+    - Santé
+    - Impôts / Taxes
+    - Animaux
+    - Enfants & Scolarité
 
 ### Structure API REST
 

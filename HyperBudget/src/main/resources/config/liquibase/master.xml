@@ -1,6 +1,9 @@
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
 
-    <include file="classpath:config/liquibase/changelog/000000000000_initial_schema.xml" relativeToChangelogFile="false" />
-
+    <include file="classpath:config/liquibase/changelog/062024/000000000000_initial_schema.xml" relativeToChangelogFile="false" />
+    <include file="classpath:config/liquibase/changelog/062024/061420242001_created_user_table.xml" relativeToChangelogFile="false" />
+    <include file="classpath:config/liquibase/changelog/062024/062820240951_added_role_column.xml" relativeToChangelogFile="false" />
+    <include file="classpath:config/liquibase/changelog/062024/062820241007_alter_edit_warn_column.xml" relativeToChangelogFile="false" />
+    <include file="classpath:config/liquibase/changelog/062024/062920240124_created_expense_table.xml" relativeToChangelogFile="false" />
 </databaseChangeLog>
