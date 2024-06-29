@@ -1,11 +1,12 @@
 package fr.ravenpanda.hyperbudget.service.impl;
 
 import fr.ravenpanda.hyperbudget.common.list.RoleEnum;
+import fr.ravenpanda.hyperbudget.dto.ExpenseDto;
 import fr.ravenpanda.hyperbudget.dto.UserDto;
+import fr.ravenpanda.hyperbudget.model.Expense;
 import fr.ravenpanda.hyperbudget.model.User;
 import fr.ravenpanda.hyperbudget.repository.UserRepository;
 import fr.ravenpanda.hyperbudget.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -75,11 +76,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto update(Integer id, User user) {
+    public UserDto update(Integer id, UserDto user) {
         if (!userRepository.existsById(id)) return null;
         user.setId(id);
 
-        User savedUser = userRepository.save(user);
+        User savedUser = userRepository.save(toEntity(user));
         return toDto(savedUser);
     }
 
@@ -96,6 +97,19 @@ public class UserServiceImpl implements UserService {
             .updatedAt(user.getUpdatedAt())
             .periodType(user.getPeriodType())
             .isEditWarnEnabled(user.getIsEditWarnEnabled())
+            .expenses(user.getExpenses() != null ?
+                user.getExpenses().stream().map(
+                expense -> ExpenseDto.builder()
+                    .id(expense.getId())
+                    .userId(expense.getUser().getId())
+                    .name(expense.getName())
+                    .amount(expense.getAmount())
+                    .date(expense.getDate())
+                    .category(expense.getCategory())
+                    .createdAt(expense.getCreatedAt())
+                    .updatedAt(expense.getUpdatedAt())
+                    .build()
+                ).toList() : List.of())
             .build();
     }
 
@@ -112,6 +126,20 @@ public class UserServiceImpl implements UserService {
             .theme(dto.getTheme())
             .periodType(dto.getPeriodType())
             .isEditWarnEnabled(dto.getIsEditWarnEnabled())
+            .expenses(dto.getExpenses() != null ?
+                dto.getExpenses().stream().map(
+                expenseDto -> Expense.builder()
+                    .id(expenseDto.getId())
+                    .user(userRepository.findById(expenseDto.getUserId()).orElse(null))
+                    .name(expenseDto.getName())
+                    .amount(expenseDto.getAmount())
+                    .date(expenseDto.getDate())
+                    .category(expenseDto.getCategory())
+                    .createdAt(expenseDto.getCreatedAt())
+                    .updatedAt(expenseDto.getUpdatedAt())
+                    .build()
+                ).toList() : List.of()
+            )
             .build();
     }
 
