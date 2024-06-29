@@ -2,7 +2,6 @@ package fr.ravenpanda.hyperbudget.controller;
 
 import fr.ravenpanda.hyperbudget.common.list.RoleEnum;
 import fr.ravenpanda.hyperbudget.dto.UserDto;
-import fr.ravenpanda.hyperbudget.model.User;
 import fr.ravenpanda.hyperbudget.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -61,7 +60,7 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserDto> update(@PathVariable Integer id, @RequestBody User user) {
+    public ResponseEntity<UserDto> update(@PathVariable Integer id, @RequestBody UserDto user) {
         UserDto updatedDto = service.update(id, user);
         return updatedDto != null ? ResponseEntity.ok(updatedDto) : ResponseEntity.noContent().build();
     }

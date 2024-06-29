@@ -25,7 +25,7 @@ public interface UserService {
 
     UserDto save(UserDto user);
 
-    UserDto update(Integer id, User user);
+    UserDto update(Integer id, UserDto user);
 
     UserDto toDto(User user);
 
