@@ -1,13 +1,22 @@
-export interface AppRoute {
-  path: string;
-  element: React.ReactNode;
-}
+import { createBrowserRouter } from "react-router-dom";
+import ErrorPage from "./scene/ErrorPage";
 
-const appRoutes: AppRoute[] = [
+const router = createBrowserRouter([
   {
-    path: "test",
-    element: <div>a</div>
+    path: "/",
+    element: <div>Hello world!</div>,
+    errorElement: <ErrorPage />
+  },
+  {
+    path: "/test",
+    element: <div>Test</div>,
+    children: [
+      {
+        path: "aaaa",
+        element: <div>aaaa</div>
+      }
+    ]
   }
-]
+]);
 
-export default appRoutes;
+export default router;
