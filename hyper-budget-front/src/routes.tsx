@@ -12,18 +12,15 @@ const router = createBrowserRouter([
     element: <ErrorPage data="NOT_ALLOWED" />
   },
   {
-    path: "/test",
-    element: <>
-      <div>Test</div>
-      <Outlet />
-    </>,
+    path: "/dashboard",
+    element: <Outlet />,
     children: [
       {
         path: "",
         element: <Navigate to="/not-allowed" replace />,
       },
       {
-        path: "aaaa",
+        path: "expense",
         element: <div>aaaa</div>
       }
     ]
