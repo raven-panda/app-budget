@@ -1,5 +1,5 @@
 import { Navigate, Outlet, createBrowserRouter } from "react-router-dom";
-import ErrorPage from "./scene/ErrorPage";
+import ErrorPage from "./scene/error/ErrorPage";
 
 const router = createBrowserRouter([
   {
