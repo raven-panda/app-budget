@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { Navigate, Outlet, createBrowserRouter } from "react-router-dom";
 import ErrorPage from "./scene/ErrorPage";
 
 const router = createBrowserRouter([
@@ -8,9 +8,20 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />
   },
   {
+    path: "/not-allowed",
+    element: <ErrorPage data="NOT_ALLOWED" />
+  },
+  {
     path: "/test",
-    element: <div>Test</div>,
+    element: <>
+      <div>Test</div>
+      <Outlet />
+    </>,
     children: [
+      {
+        path: "",
+        element: <Navigate to="/not-allowed" replace />,
+      },
       {
         path: "aaaa",
         element: <div>aaaa</div>
