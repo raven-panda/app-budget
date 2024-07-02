@@ -1,15 +1,15 @@
 import { ErrorResponse, isRouteErrorResponse, useRouteError } from "react-router-dom";
+import { ResponseErrorEnum } from "../../component/enum/ResponseErrorEnum";
 
-export default function ErrorPage({data}: {data?: "NOT_FOUND"|"NOT_ALLOWED"}) {
+export default function ErrorPage({data}: {data?: ResponseErrorEnum}) {
   const unknownError = useRouteError();
   let error: ErrorResponse|null = null;
-  const errorMessage: string =
-    data === "NOT_FOUND" ? "Page non trouvée" :
-    data === "NOT_ALLOWED" ? "Vous n'êtes pas autorisé à accéder à cette page"
-    : "Il semblerait qu'il y ait un problème avec cette page...";
+  let errorMessage: string = data ? data : ResponseErrorEnum.DEFAULT;
+  console.log({ data, errorMessage });
 
   if (isRouteErrorResponse(unknownError)) {
     error = unknownError;
+    if (error.status === 404) errorMessage = ResponseErrorEnum.NOT_FOUND;
   }
 
   return (
