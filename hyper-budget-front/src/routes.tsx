@@ -1,5 +1,6 @@
 import { Navigate, Outlet, createBrowserRouter } from "react-router-dom";
 import ErrorPage from "./scene/error/ErrorPage";
+import ExpensePage from "./scene/dashboard/ExpensePage";
 
 const router = createBrowserRouter([
   {
@@ -21,7 +22,7 @@ const router = createBrowserRouter([
       },
       {
         path: "expense",
-        element: <div>aaaa</div>
+        element: <ExpensePage />
       }
     ]
   }
