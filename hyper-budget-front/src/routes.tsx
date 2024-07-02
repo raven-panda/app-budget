@@ -1,7 +1,9 @@
 import { Navigate, Outlet, createBrowserRouter } from "react-router-dom";
 import ErrorPage from "./scene/error/ErrorPage";
-import ExpensePage from "./scene/dashboard/ExpensePage";
 import { ResponseErrorEnum } from "./component/enum/ResponseErrorEnum";
+import DashboardExpensePage from "./scene/dashboard/DashboardExpensePage";
+import DashboardHomePage from "./scene/dashboard/DashboardHomePage";
+
 
 const router = createBrowserRouter([
   {
@@ -19,11 +21,15 @@ const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <Navigate to="/not-allowed" replace />,
+        element: <Navigate to="home" replace />,
+      },
+      {
+        path: "home",
+        element: <DashboardHomePage />
       },
       {
         path: "expense",
-        element: <ExpensePage />
+        element: <DashboardExpensePage />
       }
     ]
   }
