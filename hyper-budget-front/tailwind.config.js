@@ -9,6 +9,14 @@ module.exports = {
         '24px': "24px"
       }
     },
+    colors: {
+      primary: {
+        '': "#9570FF"
+      },
+      secondary: {
+        '': "#FFDEDE"
+      }
+    },
   },
   plugins: [],
 }
