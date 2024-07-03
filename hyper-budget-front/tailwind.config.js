@@ -4,8 +4,15 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}"
   ],
   theme: {
+    fontFamily: {
+      'body': ['"Lexend Deca"', 'sans-serif']
+    },
     extend: {
+      screens: {
+        xs: "425px"
+      },
       spacing: {
+        '6px': "6px",
         '10px': "10px",
         '24px': "24px"
       },
