@@ -4,11 +4,17 @@ import './index.css';
 import { RouterProvider } from "react-router-dom";
 import reportWebVitals from './reportWebVitals';
 import router from './routes';
+import UserService from '@service/UserService';
+import { UserContext } from '@service/context/UserContext';
 
 export default function App() {
+  const userService = new UserService();
+
   return (
     <React.StrictMode>
-      <RouterProvider router={router}/>
+      <UserContext.Provider value={userService.getUser()}>
+        <RouterProvider router={router}/>
+      </UserContext.Provider>
     </React.StrictMode>
   )
 }
