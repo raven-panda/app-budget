@@ -40,6 +40,16 @@
       "category": "INSURANCE",
       "createdAt": "03-07-2024 23:36:12",
       "updatedAt": "03-07-2024 23:36:12"
+    },
+    {
+      "id": 4,
+      "userId": 1,
+      "name": "Test",
+      "amount": 78.1,
+      "date": "05-02-2024",
+      "category": "INSURANCE",
+      "createdAt": "03-07-2024 23:36:12",
+      "updatedAt": "03-07-2024 23:36:12"
     }
   ]
 }
