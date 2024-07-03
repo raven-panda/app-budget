@@ -1,0 +1,13 @@
+{
+  "id": 1,
+  "role": "USER",
+  "email": "jdoe@gmail.com",
+  "username": "John Doe",
+  "password": "powerfullLol1234*",
+  "createdAt": "03-07-2024 20:26:26",
+  "updatedAt": "03-07-2024 20:26:26",
+  "theme": "LIGHT",
+  "periodType": "MONTHLY",
+  "isEditWarnEnabled": true,
+  "expenses": []
+}
