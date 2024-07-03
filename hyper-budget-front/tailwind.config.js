@@ -14,7 +14,15 @@ module.exports = {
       spacing: {
         '6px': "6px",
         '10px': "10px",
+        '16px': "16px",
+        '20px': "20px",
         '24px': "24px"
+      },
+      borderWidth: {
+        1: "1px",
+      },
+      borderRadius: {
+        '10px': "10px",
       },
       backgroundColor: {
         primary: {
