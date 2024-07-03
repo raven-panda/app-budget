@@ -1,6 +1,6 @@
 import { Navigate, Outlet, createBrowserRouter } from "react-router-dom";
 import ErrorPage from "@scene/error/ErrorPage";
-import { ResponseErrorEnum } from "@component/enum/ResponseErrorEnum";
+import { ResponseErrorEnum } from "@model/enum/ResponseErrorEnum";
 import DashboardExpensePage from "@scene/dashboard/DashboardExpensePage";
 import DashboardHomePage from "@scene/dashboard/DashboardHomePage";
 
