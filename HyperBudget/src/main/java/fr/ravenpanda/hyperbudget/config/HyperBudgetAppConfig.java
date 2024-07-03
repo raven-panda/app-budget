@@ -11,8 +11,8 @@ import java.time.format.DateTimeFormatter;
 @Configuration
 public class HyperBudgetAppConfig {
 
-	private static final String DATE_FORMAT = "dd-MM-yyyy";
-	private static final String DATE_TIME_FORMAT = "dd-MM-yyyy HH:mm:ss";
+	private static final String DATE_FORMAT = "MM-dd-yyyy";
+	private static final String DATE_TIME_FORMAT = "MM-dd-yyyy HH:mm:ss";
 
 	@Bean
 	public Jackson2ObjectMapperBuilderCustomizer jsonCustomizer() {

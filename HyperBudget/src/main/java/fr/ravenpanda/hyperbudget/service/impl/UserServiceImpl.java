@@ -9,6 +9,7 @@ import fr.ravenpanda.hyperbudget.repository.UserRepository;
 import fr.ravenpanda.hyperbudget.service.UserService;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -97,6 +98,7 @@ public class UserServiceImpl implements UserService {
             .updatedAt(user.getUpdatedAt())
             .periodType(user.getPeriodType())
             .isEditWarnEnabled(user.getIsEditWarnEnabled())
+            .totalExpensesAmount(user.getExpenses() != null ? user.getExpenses().stream().map(Expense::getAmount).reduce(BigDecimal.ZERO, BigDecimal::add) : BigDecimal.ZERO)
             .expenses(user.getExpenses() != null ?
                 user.getExpenses().stream().map(
                 expense -> ExpenseDto.builder()

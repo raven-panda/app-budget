@@ -7,6 +7,7 @@ import fr.ravenpanda.hyperbudget.model.Expense;
 import lombok.Builder;
 import lombok.Data;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -24,6 +25,7 @@ public class UserDto {
 	private PreferredThemeEnum theme;
 	private PeriodTypeEnum periodType;
 	private Boolean isEditWarnEnabled;
+	private BigDecimal totalExpensesAmount;
 	private List<ExpenseDto> expenses;
 
 }
