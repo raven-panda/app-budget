@@ -1,4 +1,4 @@
-import Container from "../container/Container";
+import Container from '@component/container/Container';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBell, faUser } from '@fortawesome/free-solid-svg-icons'
 

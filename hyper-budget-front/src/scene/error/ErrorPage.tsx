@@ -1,5 +1,5 @@
 import { ErrorResponse, isRouteErrorResponse, useRouteError } from "react-router-dom";
-import { ResponseErrorEnum } from "../../component/enum/ResponseErrorEnum";
+import { ResponseErrorEnum } from "@component/enum/ResponseErrorEnum";
 
 export default function ErrorPage({data}: {data?: ResponseErrorEnum}) {
   const unknownError = useRouteError();
