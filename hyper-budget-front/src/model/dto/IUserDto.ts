@@ -1,3 +1,5 @@
+import IExpenseDto from "./IExpenseDto";
+
 export default interface IUserDto {
   id: number;
   role: string;
@@ -9,5 +11,6 @@ export default interface IUserDto {
   theme: string;
   periodType: string;
   isEditWarnEnabled: boolean;
-  expenses: Record<string, any>[];
+  totalExpensesAmount: number;
+  expenses: IExpenseDto[];
 }
