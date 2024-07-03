@@ -3,14 +3,8 @@ import { ResponseErrorEnum } from "@component/enum/ResponseErrorEnum";
 
 export default function ErrorPage({data}: {data?: ResponseErrorEnum}) {
   const unknownError = useRouteError();
-  let error: ErrorResponse|null = null;
-  let errorMessage: string = data ? data : ResponseErrorEnum.DEFAULT;
-  console.log({ data, errorMessage });
-
-  if (isRouteErrorResponse(unknownError)) {
-    error = unknownError;
-    if (error.status === 404) errorMessage = ResponseErrorEnum.NOT_FOUND;
-  }
+  const error: ErrorResponse|null = isRouteErrorResponse(unknownError) ? unknownError : null;
+  const errorMessage: string = data ? data : error?.status === 404 ? ResponseErrorEnum.NOT_FOUND : ResponseErrorEnum.DEFAULT;
 
   return (
     <div className="flex flex-col justify-center items-center min-h-screen">
@@ -24,7 +18,4 @@ export default function ErrorPage({data}: {data?: ResponseErrorEnum}) {
       <p><i>{error?.data}</i></p>
     </div>
   );
-  
-  
-  
 }
