@@ -24,10 +24,11 @@
       "@component/*": ["src/component/*"],
       "@scene/*": ["src/scene/*"],
       "@service/*": ["src/service/*"],
-      "@data/*": ["data/*"]
+      "@fixture/*": ["fixture/*"]
     }
   },
   "include": [
-    "src"
+    "src",
+    "fixture"
   ]
 }

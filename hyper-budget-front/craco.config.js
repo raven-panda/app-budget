@@ -6,7 +6,7 @@ module.exports = {
       '@component': path.resolve(__dirname, 'src/component'),
       '@scene': path.resolve(__dirname, 'src/scene'),
       '@service': path.resolve(__dirname, 'src/service'),
-      '@data': path.resolve(__dirname, 'data'),
+      '@fixture': path.resolve(__dirname, 'fixture'),
     },
   },
 };
