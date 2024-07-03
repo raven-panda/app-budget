@@ -23,8 +23,7 @@
     "paths": {
       "@component/*": ["src/component/*"],
       "@scene/*": ["src/scene/*"],
-      "@service/*": ["src/service/*"],
-      "@fixture/*": ["fixture/*"]
+      "@service/*": ["src/service/*"]
     }
   },
   "include": [
