@@ -2,8 +2,10 @@ import Container from '@component/container/Container';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBell, faUser } from '@fortawesome/free-solid-svg-icons'
 
-export default function DashboardHeader() {
-  const username = "John Doe";
+interface DashboardHeaderProps {
+  username: string;
+}
+export default function DashboardHeader({ username }: DashboardHeaderProps) {
   const notifications = 688;
 
   return (
