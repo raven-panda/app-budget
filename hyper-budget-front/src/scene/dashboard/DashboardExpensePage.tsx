@@ -20,7 +20,7 @@ export default function DashboardExpensePage() {
   const categorizeExpensesByDate = (): IExpenseByDate[] => {
     const expensesByDate: IExpenseByDate[] = [];
 
-    user.expenses.forEach((expense) => {
+    user?.expenses?.forEach((expense) => {
       if (expensesByDate.some((item) => item.date.getTime() === expense.date.getTime()))
         expensesByDate.find((item) => item.date.getTime() === expense.date.getTime())?.expenses.push(expense);
       else

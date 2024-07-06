@@ -12,7 +12,7 @@ export default function App() {
 
   return (
     <React.StrictMode>
-      <UserContext.Provider value={userService.getUser()}>
+      <UserContext.Provider value={userService.getUser(2)}>
         <RouterProvider router={router}/>
       </UserContext.Provider>
     </React.StrictMode>
