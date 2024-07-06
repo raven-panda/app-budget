@@ -47,7 +47,7 @@ public class Expense {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    private UserModel user;
 
     @Column(nullable = false, updatable = false)
     @CreationTimestamp

@@ -4,7 +4,7 @@ import fr.ravenpanda.hyperbudget.common.list.RoleEnum;
 import fr.ravenpanda.hyperbudget.dto.ExpenseDto;
 import fr.ravenpanda.hyperbudget.dto.UserDto;
 import fr.ravenpanda.hyperbudget.model.Expense;
-import fr.ravenpanda.hyperbudget.model.User;
+import fr.ravenpanda.hyperbudget.model.UserModel;
 import fr.ravenpanda.hyperbudget.repository.UserRepository;
 import fr.ravenpanda.hyperbudget.service.UserService;
 import org.springframework.stereotype.Service;
@@ -71,7 +71,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto save(UserDto user) {
-        User savedUser = userRepository.save(toEntity(user));
+        UserModel savedUser = userRepository.save(toEntity(user));
         savedUser.setIsEditWarnEnabled(true);
         return toDto(savedUser);
     }
@@ -81,12 +81,12 @@ public class UserServiceImpl implements UserService {
         if (!userRepository.existsById(id)) return null;
         user.setId(id);
 
-        User savedUser = userRepository.save(toEntity(user));
+        UserModel savedUser = userRepository.save(toEntity(user));
         return toDto(savedUser);
     }
 
     @Override
-    public UserDto toDto(User user) {
+    public UserDto toDto(UserModel user) {
         return UserDto.builder()
             .id(user.getId())
             .username(user.getUsername())
@@ -116,8 +116,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User toEntity(UserDto dto) {
-        return User.builder()
+    public UserModel toEntity(UserDto dto) {
+        return UserModel.builder()
             .id(dto.getId())
             .username(dto.getUsername())
             .email(dto.getEmail())

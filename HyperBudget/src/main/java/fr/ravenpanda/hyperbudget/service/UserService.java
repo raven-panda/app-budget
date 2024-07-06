@@ -2,7 +2,7 @@ package fr.ravenpanda.hyperbudget.service;
 
 import fr.ravenpanda.hyperbudget.common.list.RoleEnum;
 import fr.ravenpanda.hyperbudget.dto.UserDto;
-import fr.ravenpanda.hyperbudget.model.User;
+import fr.ravenpanda.hyperbudget.model.UserModel;
 
 import java.util.List;
 
@@ -27,8 +27,8 @@ public interface UserService {
 
     UserDto update(Integer id, UserDto user);
 
-    UserDto toDto(User user);
+    UserDto toDto(UserModel user);
 
-    User toEntity(UserDto userDto);
+    UserModel toEntity(UserDto userDto);
 
 }

@@ -1,7 +1,7 @@
 package fr.ravenpanda.hyperbudget.repository;
 
 import fr.ravenpanda.hyperbudget.common.list.RoleEnum;
-import fr.ravenpanda.hyperbudget.model.User;
+import fr.ravenpanda.hyperbudget.model.UserModel;
 import jakarta.persistence.Table;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -11,13 +11,13 @@ import java.util.Optional;
 
 @Table
 @Repository
-public interface UserRepository extends JpaRepository<User, Integer>{
+public interface UserRepository extends JpaRepository<UserModel, Integer>{
 
-	Optional<User> findByUsername(String username);
+	Optional<UserModel> findByUsername(String username);
 
-	Optional<User> findByEmail(String email);
+	Optional<UserModel> findByEmail(String email);
 
-	List<User> findAllByRole(RoleEnum role);
+	List<UserModel> findAllByRole(RoleEnum role);
 
 
 }

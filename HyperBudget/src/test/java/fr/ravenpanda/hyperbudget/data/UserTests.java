@@ -4,17 +4,15 @@ import fr.ravenpanda.hyperbudget.common.list.PeriodTypeEnum;
 import fr.ravenpanda.hyperbudget.common.list.PreferredThemeEnum;
 import fr.ravenpanda.hyperbudget.common.list.RoleEnum;
 import fr.ravenpanda.hyperbudget.dto.UserDto;
-import fr.ravenpanda.hyperbudget.model.User;
+import fr.ravenpanda.hyperbudget.model.UserModel;
 import net.bytebuddy.utility.RandomString;
-import org.junit.jupiter.api.Test;
-import static org.assertj.core.api.Assertions.assertThat;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.TestComponent;
 
 @TestComponent
 @SpringBootTest
 public class UserTests {
-    public static User user1 = User.builder()
+    public static UserModel user1 = UserModel.builder()
         .role(RoleEnum.USER)
         .email(new RandomString(10).nextString() + "@" + new RandomString(5).nextString() + ".com")
         .username("User1")
@@ -34,7 +32,7 @@ public class UserTests {
         .isEditWarnEnabled(true)
         .build();
 
-    public static User user2 = User.builder()
+    public static UserModel user2 = UserModel.builder()
         .role(RoleEnum.USER)
         .email("aaaa@testing.org")
         .username("User2")
@@ -54,7 +52,7 @@ public class UserTests {
         .isEditWarnEnabled(false)
         .build();
 
-    public static User admin1 = User.builder()
+    public static UserModel admin1 = UserModel.builder()
         .role(RoleEnum.ADMIN)
         .email("bro@administrator.org")
         .username("UserAdmin")
