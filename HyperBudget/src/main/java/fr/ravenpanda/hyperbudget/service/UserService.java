@@ -1,6 +1,5 @@
 package fr.ravenpanda.hyperbudget.service;
 
-import fr.ravenpanda.hyperbudget.common.list.RoleEnum;
 import fr.ravenpanda.hyperbudget.dto.UserDto;
 import fr.ravenpanda.hyperbudget.model.UserModel;
 
@@ -19,7 +18,7 @@ public interface UserService {
     UserDto findByUsername(String username);
     Boolean existsByUsername(String username);
 
-    List<UserDto> findAllByRole(RoleEnum role);
+    List<UserDto> findAllByRole(String role);
 
     Boolean deleteById(Integer id);
 

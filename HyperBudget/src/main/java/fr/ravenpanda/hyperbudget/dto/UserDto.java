@@ -2,7 +2,6 @@ package fr.ravenpanda.hyperbudget.dto;
 
 import fr.ravenpanda.hyperbudget.common.list.PeriodTypeEnum;
 import fr.ravenpanda.hyperbudget.common.list.PreferredThemeEnum;
-import fr.ravenpanda.hyperbudget.common.list.RoleEnum;
 import lombok.Builder;
 import lombok.Data;
 
@@ -15,7 +14,7 @@ import java.util.List;
 public class UserDto {
 
 	private Integer id;
-	private RoleEnum role;
+	private String role;
 	private String email;
 	private String username;
 	private String password;

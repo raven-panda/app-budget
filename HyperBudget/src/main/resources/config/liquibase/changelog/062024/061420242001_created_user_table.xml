@@ -36,4 +36,12 @@
         </createTable>
     </changeSet>
 
+    <changeSet id="080920241904-2" author="amaire">
+        <addColumn tableName="rp_user">
+            <column name="role" type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+
 </databaseChangeLog>

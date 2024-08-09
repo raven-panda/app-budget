@@ -1,6 +1,5 @@
 package fr.ravenpanda.hyperbudget.repository;
 
-import fr.ravenpanda.hyperbudget.common.list.RoleEnum;
 import fr.ravenpanda.hyperbudget.model.UserModel;
 import jakarta.persistence.Table;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -17,7 +16,7 @@ public interface UserRepository extends JpaRepository<UserModel, Integer>{
 
 	Optional<UserModel> findByEmail(String email);
 
-	List<UserModel> findAllByRole(RoleEnum role);
+	List<UserModel> findAllByRole(String role);
 
 
 }

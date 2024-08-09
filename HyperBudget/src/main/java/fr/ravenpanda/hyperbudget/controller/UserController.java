@@ -1,6 +1,5 @@
 package fr.ravenpanda.hyperbudget.controller;
 
-import fr.ravenpanda.hyperbudget.common.list.RoleEnum;
 import fr.ravenpanda.hyperbudget.dto.UserDto;
 import fr.ravenpanda.hyperbudget.service.UserService;
 import org.springframework.http.ResponseEntity;
@@ -52,7 +51,7 @@ public class UserController {
     }
 
     @GetMapping("/search/role")
-    public ResponseEntity<List<UserDto>> getAllByRole(@RequestParam RoleEnum value) {
+    public ResponseEntity<List<UserDto>> getAllByRole(@RequestParam String value) {
         return ResponseEntity.ok(service.findAllByRole(value));
     }
 

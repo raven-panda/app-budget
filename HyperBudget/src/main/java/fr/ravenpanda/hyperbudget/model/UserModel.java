@@ -2,7 +2,6 @@ package fr.ravenpanda.hyperbudget.model;
 
 import fr.ravenpanda.hyperbudget.common.list.PeriodTypeEnum;
 import fr.ravenpanda.hyperbudget.common.list.PreferredThemeEnum;
-import fr.ravenpanda.hyperbudget.common.list.RoleEnum;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -32,9 +31,8 @@ public class UserModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false, columnDefinition = "enum('USER', 'ADMIN')")
-    @Enumerated(EnumType.STRING)
-    private RoleEnum role;
+    @Column(nullable = false, length = 20)
+    private String role;
 
     @Column(nullable = false, unique = true)
     private String email;

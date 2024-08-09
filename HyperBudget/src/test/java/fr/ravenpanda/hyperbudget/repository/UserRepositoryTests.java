@@ -2,7 +2,6 @@ package fr.ravenpanda.hyperbudget.repository;
 
 import fr.ravenpanda.hyperbudget.common.list.PeriodTypeEnum;
 import fr.ravenpanda.hyperbudget.common.list.PreferredThemeEnum;
-import fr.ravenpanda.hyperbudget.common.list.RoleEnum;
 import fr.ravenpanda.hyperbudget.data.UserTests;
 import fr.ravenpanda.hyperbudget.model.UserModel;
 import org.junit.jupiter.api.Test;
@@ -81,7 +80,7 @@ public class UserRepositoryTests {
         UserModel savedUser1 = userRepository.save(UserTests.user1);
         UserModel savedUser2 = userRepository.save(UserTests.user2);
         UserModel savedAdmin = userRepository.save(UserTests.admin1);
-        List<UserModel> usersList = userRepository.findAllByRole(RoleEnum.USER);
+        List<UserModel> usersList = userRepository.findAllByRole("ROLE_USER");
 
         assertThat(UserTests.user1).isNotNull();
         assertThat(UserTests.user2).isNotNull();

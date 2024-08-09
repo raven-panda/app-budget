@@ -1,6 +1,5 @@
 package fr.ravenpanda.hyperbudget.service.impl;
 
-import fr.ravenpanda.hyperbudget.common.list.RoleEnum;
 import fr.ravenpanda.hyperbudget.dto.ExpenseDto;
 import fr.ravenpanda.hyperbudget.dto.UserDto;
 import fr.ravenpanda.hyperbudget.model.Expense;
@@ -57,7 +56,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserDto> findAllByRole(RoleEnum role) {
+    public List<UserDto> findAllByRole(String role) {
         return userRepository.findAllByRole(role).stream().map(this::toDto).toList();
     }
 
