@@ -4,6 +4,7 @@ import fr.ravenpanda.hyperbudget.dto.ExpenseDto;
 import fr.ravenpanda.hyperbudget.dto.UserDto;
 import fr.ravenpanda.hyperbudget.model.Expense;
 import fr.ravenpanda.hyperbudget.model.UserModel;
+import fr.ravenpanda.hyperbudget.model.UserRole;
 import fr.ravenpanda.hyperbudget.repository.UserRepository;
 import fr.ravenpanda.hyperbudget.repository.UserRoleRepository;
 import fr.ravenpanda.hyperbudget.service.UserService;
@@ -59,7 +60,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserDto> findAllByRole(String role) {
+    public List<UserDto> findAllByRole(UserRole role) {
         return userRepository.findAllByRole(role).stream().map(this::toDto).toList();
     }
 

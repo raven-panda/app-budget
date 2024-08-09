@@ -2,6 +2,7 @@ package fr.ravenpanda.hyperbudget.service;
 
 import fr.ravenpanda.hyperbudget.dto.UserDto;
 import fr.ravenpanda.hyperbudget.model.UserModel;
+import fr.ravenpanda.hyperbudget.model.UserRole;
 
 import java.util.List;
 
@@ -18,7 +19,7 @@ public interface UserService {
     UserDto findByUsername(String username);
     Boolean existsByUsername(String username);
 
-    List<UserDto> findAllByRole(String role);
+    List<UserDto> findAllByRole(UserRole role);
 
     Boolean deleteById(Integer id);
 

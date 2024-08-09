@@ -13,7 +13,7 @@
         </createTable>
 
         <addColumn tableName="rp_user">
-            <column name="role_id">
+            <column name="role_id" type="int">
                 <constraints nullable="false"/>
             </column>
         </addColumn>

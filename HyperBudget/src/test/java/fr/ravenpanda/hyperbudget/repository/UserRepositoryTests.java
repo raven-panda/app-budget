@@ -4,6 +4,7 @@ import fr.ravenpanda.hyperbudget.common.list.PeriodTypeEnum;
 import fr.ravenpanda.hyperbudget.common.list.PreferredThemeEnum;
 import fr.ravenpanda.hyperbudget.data.UserTests;
 import fr.ravenpanda.hyperbudget.model.UserModel;
+import fr.ravenpanda.hyperbudget.model.UserRole;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
@@ -80,7 +81,7 @@ public class UserRepositoryTests {
         UserModel savedUser1 = userRepository.save(UserTests.user1);
         UserModel savedUser2 = userRepository.save(UserTests.user2);
         UserModel savedAdmin = userRepository.save(UserTests.admin1);
-        List<UserModel> usersList = userRepository.findAllByRole("ROLE_USER");
+        List<UserModel> usersList = userRepository.findAllByRole(UserRole.builder().name("ROLE_USER").build());
 
         assertThat(UserTests.user1).isNotNull();
         assertThat(UserTests.user2).isNotNull();
