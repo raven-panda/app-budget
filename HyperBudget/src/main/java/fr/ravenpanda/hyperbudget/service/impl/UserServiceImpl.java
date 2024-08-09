@@ -5,6 +5,7 @@ import fr.ravenpanda.hyperbudget.dto.UserDto;
 import fr.ravenpanda.hyperbudget.model.Expense;
 import fr.ravenpanda.hyperbudget.model.UserModel;
 import fr.ravenpanda.hyperbudget.repository.UserRepository;
+import fr.ravenpanda.hyperbudget.repository.UserRoleRepository;
 import fr.ravenpanda.hyperbudget.service.UserService;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +16,11 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+    private final UserRoleRepository userRoleRepository;
 
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository, UserRoleRepository userRoleRepository) {
         this.userRepository = userRepository;
+        this.userRoleRepository = userRoleRepository;
     }
 
     @Override
@@ -91,7 +94,7 @@ public class UserServiceImpl implements UserService {
             .username(user.getUsername())
             .email(user.getEmail())
             .password(user.getPassword())
-            .role(user.getRole())
+            .role(user.getRole().getName())
             .theme(user.getTheme())
             .createdAt(user.getCreatedAt())
             .updatedAt(user.getUpdatedAt())
@@ -121,7 +124,7 @@ public class UserServiceImpl implements UserService {
             .username(dto.getUsername())
             .email(dto.getEmail())
             .password(dto.getPassword())
-            .role(dto.getRole())
+            .role(userRoleRepository.findByName(dto.getRole()).orElse(null))
             .createdAt(dto.getCreatedAt())
             .updatedAt(dto.getUpdatedAt())
             .theme(dto.getTheme())
