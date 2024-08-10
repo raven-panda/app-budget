@@ -51,9 +51,9 @@ public class Expense {
 
     @Column(nullable = false, updatable = false)
     @CreationTimestamp
-    private LocalDateTime createdAt;
+    private Date createdAt;
 
     @Column(nullable = false)
     @UpdateTimestamp
-    private LocalDateTime updatedAt;
+    private Date updatedAt;
 }

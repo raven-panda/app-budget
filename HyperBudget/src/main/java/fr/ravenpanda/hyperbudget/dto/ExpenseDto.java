@@ -1,5 +1,6 @@
 package fr.ravenpanda.hyperbudget.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import fr.ravenpanda.hyperbudget.common.list.DefaultCategoryEnum;
 import lombok.Builder;
 import lombok.Data;
@@ -16,9 +17,12 @@ public class ExpenseDto {
 	private Integer userId;
 	private String name;
 	private BigDecimal amount;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy")
 	private Date date;
 	private DefaultCategoryEnum category;
-	private LocalDateTime createdAt;
-	private LocalDateTime updatedAt;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy HH:mm:ss")
+	private Date createdAt;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy HH:mm:ss")
+	private Date updatedAt;
 
 }
