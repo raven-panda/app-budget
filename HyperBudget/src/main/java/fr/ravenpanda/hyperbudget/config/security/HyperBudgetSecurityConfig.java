@@ -63,9 +63,15 @@ public class HyperBudgetSecurityConfig {
             .authorizeHttpRequests(auth ->
                 auth.requestMatchers("/error").permitAll()
                     .requestMatchers(new AntPathRequestMatcher("/api/auth/**")).permitAll()
+
                     .requestMatchers(new AntPathRequestMatcher("/api/user/{id}")).hasAnyRole("USER", "ADMIN")
-                        .requestMatchers(new AntPathRequestMatcher("/api/user/change-password/{id}")).hasAnyRole("USER", "ADMIN")
+                    .requestMatchers(new AntPathRequestMatcher("/api/user/change-password/{id}")).hasAnyRole("USER", "ADMIN")
                     .requestMatchers(new AntPathRequestMatcher("/api/user/**")).hasRole("ADMIN")
+
+                    .requestMatchers(new AntPathRequestMatcher("/api/expense/search/**")).hasAnyRole("USER", "ADMIN")
+                    .requestMatchers(new AntPathRequestMatcher("/api/expense/{id}")).hasAnyRole("USER", "ADMIN")
+                    .requestMatchers(new AntPathRequestMatcher("/api/expense", "POST")).hasAnyRole("USER", "ADMIN")
+                    .requestMatchers(new AntPathRequestMatcher("/api/expense/**")).hasRole("ADMIN")
                     .anyRequest().authenticated()
             );
 
