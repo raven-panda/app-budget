@@ -3,6 +3,7 @@ import ErrorPage from "@scene/error/ErrorPage";
 import { ResponseErrorEnum } from "@model/enum/ResponseErrorEnum";
 import DashboardExpensePage from "@scene/dashboard/DashboardExpensePage";
 import DashboardHomePage from "@scene/dashboard/DashboardHomePage";
+import WelcomePage from "@scene/WelcomePage";
 
 
 const router = createBrowserRouter([
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
   {
     path: "/not-allowed",
     element: <ErrorPage data={ResponseErrorEnum.NOT_ALLOWED} />
+  },
+  {
+    path: "/welcome",
+    element: <WelcomePage />,
   },
   {
     path: "/dashboard",
