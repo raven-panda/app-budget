@@ -8,10 +8,12 @@ import fr.ravenpanda.hyperbudget.model.UserRole;
 import fr.ravenpanda.hyperbudget.repository.UserRepository;
 import fr.ravenpanda.hyperbudget.repository.UserRoleRepository;
 import fr.ravenpanda.hyperbudget.service.UserService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -32,6 +34,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public Boolean existsById(Integer id) {
         return userRepository.existsById(id);
+    }
+
+    @Override
+    public Boolean checkPassword(Integer id, String password) {
+        Optional<String> storedHashPw = userRepository.findById(id).map(UserModel::getPassword);
+        if (!userRepository.existsById(id) || storedHashPw.isEmpty()) return false;
+
+        return new BCryptPasswordEncoder().matches(password, storedHashPw.get());
     }
 
     @Override
@@ -83,6 +93,7 @@ public class UserServiceImpl implements UserService {
     public UserDto update(Integer id, UserDto user) {
         if (!userRepository.existsById(id)) return null;
         user.setId(id);
+        user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
 
         UserModel savedUser = userRepository.save(toEntity(user));
         return toDto(savedUser);

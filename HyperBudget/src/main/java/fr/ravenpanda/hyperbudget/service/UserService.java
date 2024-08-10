@@ -11,6 +11,8 @@ public interface UserService {
     UserDto findById(Integer id);
     Boolean existsById(Integer id);
 
+    Boolean checkPassword(Integer id, String password);
+
     List<UserDto> findAll();
 
     UserDto findByEmail(String email);
