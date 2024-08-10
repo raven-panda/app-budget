@@ -4,6 +4,8 @@ import { ResponseErrorEnum } from "@model/enum/ResponseErrorEnum";
 import DashboardExpensePage from "@scene/dashboard/DashboardExpensePage";
 import DashboardHomePage from "@scene/dashboard/DashboardHomePage";
 import WelcomePage from "@scene/WelcomePage";
+import LoginFormPage from "@scene/auth/LoginFormPage";
+import RegisterFormPage from "@scene/auth/RegisterFormPage";
 
 
 const router = createBrowserRouter([
@@ -19,6 +21,24 @@ const router = createBrowserRouter([
   {
     path: "/welcome",
     element: <WelcomePage />,
+  },
+  {
+    path: "/auth",
+    element: <Outlet />,
+    children: [
+      {
+        path: "",
+        element: <Navigate to="login" replace />,
+      },
+      {
+        path: "login",
+        element: <LoginFormPage />
+      },
+      {
+        path: "register",
+        element: <RegisterFormPage />
+      },
+    ]
   },
   {
     path: "/dashboard",
