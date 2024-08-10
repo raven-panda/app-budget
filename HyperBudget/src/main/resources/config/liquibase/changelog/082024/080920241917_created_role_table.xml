@@ -14,7 +14,7 @@
 
         <addColumn tableName="rp_user">
             <column name="role_id" type="int">
-                <constraints nullable="false"/>
+                <constraints nullable="false" unique="true"/>
             </column>
         </addColumn>
 
