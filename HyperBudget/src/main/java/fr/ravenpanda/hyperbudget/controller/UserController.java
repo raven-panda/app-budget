@@ -64,18 +64,28 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<UserDto> save(@RequestBody UserDto user) {
+        if (roleRepository.findByName(user.getRole()).isEmpty()) {
+            return ResponseEntity.badRequest().build();
+        }
+
         return ResponseEntity.ok(service.save(user));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<UserDto> update(@PathVariable Integer id, @RequestBody UserDto user) {
+        if (roleRepository.findByName(user.getRole()).isEmpty() || !service.checkPassword(id, user.getPassword())) {
+            return ResponseEntity.badRequest().build();
+        }
+
         UserDto updatedDto = service.update(id, user);
         return updatedDto != null ? ResponseEntity.ok(updatedDto) : ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Boolean> update(@PathVariable Integer id) {
+    @DeleteMapping("/{id}/{password}")
+    public ResponseEntity<Boolean> update(@PathVariable Integer id, @PathVariable String password) {
+        if (!service.checkPassword(id, password)) return ResponseEntity.badRequest().build();
         Boolean success = service.deleteById(id);
+
         return success ? ResponseEntity.ok(true) : ResponseEntity.noContent().build();
     }
 
