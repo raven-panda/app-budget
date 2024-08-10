@@ -11,7 +11,7 @@ export default function WelcomePage() {
         <p className="mb-20px">
           <b>HyperBudget</b> est conçu pour simplifier la gestion de votre argent et vous aider à atteindre vos objectifs financiers avec sérénité.
         </p>
-        <a href="/auth/login" className="btn-primary w-full">Se connecter</a>
+        <a href="/auth/login" className="btn-primary w-full py-16px">Se connecter</a>
         <p>ou</p>
         <a href="/auth/register" className="text-tertiary">Créer un compte</a>
       </section>
