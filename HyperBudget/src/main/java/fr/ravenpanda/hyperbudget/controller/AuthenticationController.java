@@ -4,6 +4,7 @@ import fr.ravenpanda.hyperbudget.common.list.PeriodTypeEnum;
 import fr.ravenpanda.hyperbudget.common.list.PreferredThemeEnum;
 import fr.ravenpanda.hyperbudget.config.security.service.JwtUtils;
 import fr.ravenpanda.hyperbudget.dto.UserDto;
+import fr.ravenpanda.hyperbudget.dto.auth.AuthResponse;
 import fr.ravenpanda.hyperbudget.dto.auth.LoginDto;
 import fr.ravenpanda.hyperbudget.dto.auth.RegisterDto;
 import fr.ravenpanda.hyperbudget.repository.UserRoleRepository;
@@ -76,12 +77,12 @@ public class AuthenticationController {
         return ResponseEntity.ok(getJwtAuthenticated(loginRequest));
     }
 
-    private String getJwtAuthenticated(LoginDto loginRequest) {
+    private AuthResponse getJwtAuthenticated(LoginDto loginRequest) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        return jwtUtils.generateJwtToken(authentication);
+        return AuthResponse.builder().token(jwtUtils.generateJwtToken(authentication)).build();
     }
 
 }
