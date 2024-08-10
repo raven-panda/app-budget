@@ -48,7 +48,10 @@ body {
   @apply bg-primary text-secondary;
   display: block;
   border: none;
-  padding: 16px 24px;
   border-radius: 12px;
   cursor: pointer;
+}
+
+input {
+  outline: none;
 }

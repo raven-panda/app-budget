@@ -6,6 +6,8 @@ import reportWebVitals from './reportWebVitals';
 import router from './routes';
 import UserService from '@service/UserService';
 import { UserContext } from '@service/context/UserContext';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 
 export default function App() {
   const userService = new UserService();
@@ -13,6 +15,7 @@ export default function App() {
   return (
     <React.StrictMode>
       <UserContext.Provider value={[userService.getUser(), ""]}>
+        <ToastContainer/>
         <RouterProvider router={router}/>
       </UserContext.Provider>
     </React.StrictMode>
