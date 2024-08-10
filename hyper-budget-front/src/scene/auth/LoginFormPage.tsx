@@ -3,10 +3,12 @@ import GreetingsImage from "@component/icon/GreetingsImage";
 import { Checkbox } from "@mui/material";
 import ApiUrls from "@service/ApiUrls";
 import {  useState } from "react";
+import { CookiesProvider, useCookies } from "react-cookie";
 import { toast } from "react-toastify";
 import { twMerge } from "tailwind-merge";
 
 export default function LoginFormPage() {
+  const [cookies, setCookie, removeCookie] = useCookies();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isValid, setIsValid] = useState(true);
 
@@ -36,7 +38,7 @@ export default function LoginFormPage() {
         return response.json();
       })
       .then(data => {
-        cookie
+        setCookie("token", data.token, { path: "/", sameSite: "strict" });
       })
       .catch(error => {
         setIsValid(false);
