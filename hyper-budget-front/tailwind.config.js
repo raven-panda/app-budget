@@ -16,7 +16,9 @@ module.exports = {
         '10px': "10px",
         '16px': "16px",
         '20px': "20px",
-        '24px': "24px"
+        '24px': "24px",
+        '32px': "32px",
+        '48px': "48px"
       },
       borderWidth: {
         1: "1px",
@@ -32,6 +34,10 @@ module.exports = {
         secondary: {
           DEFAULT: "#FFDEDE",
           light: "#FFDEDE"
+        },
+        tertiary: {
+          DEFAULT: "#FFFFFF",
+          light: "#FFFFFF"
         }
       },
       colors: {
@@ -44,6 +50,10 @@ module.exports = {
           DEFAULT: "#FFFFFF",
           light: "#FFFFFF",
           faded: "rgba(255, 255, 255, 0.5)"
+        },
+        tertiary: {
+          DEFAULT: "#9570FF",
+          light: "#9570FF"
         },
         important: {
           DEFAULT: "#FF0000",
