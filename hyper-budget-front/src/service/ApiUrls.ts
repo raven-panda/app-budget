@@ -3,4 +3,5 @@ export default class ApiUrls {
   private static readonly BASE_URL = process.env.REACT_APP_API_URL + "/api";
 
   public static readonly USER = `${this.BASE_URL}/user/{id}`;
+  public static readonly LOGIN = `${this.BASE_URL}/auth/login`;
 }
