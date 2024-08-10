@@ -1,6 +1,5 @@
 package fr.ravenpanda.hyperbudget.config.security;
 
-import fr.ravenpanda.hyperbudget.config.security.service.AuthEntryPointJwt;
 import fr.ravenpanda.hyperbudget.config.security.service.AuthTokenFilter;
 import fr.ravenpanda.hyperbudget.config.security.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,12 +25,10 @@ public class HyperBudgetSecurityConfig {
 
     private final UserDetailsServiceImpl userDetailsService;
 
-    private final AuthEntryPointJwt unauthorizedHandler;
 
     @Autowired
-    protected HyperBudgetSecurityConfig(UserDetailsServiceImpl userDetailsService, AuthEntryPointJwt unauthorizedHandler) {
+    protected HyperBudgetSecurityConfig(UserDetailsServiceImpl userDetailsService) {
         this.userDetailsService = userDetailsService;
-        this.unauthorizedHandler = unauthorizedHandler;
     }
 
     @Bean
@@ -62,10 +59,12 @@ public class HyperBudgetSecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http, HandlerMappingIntrospector introspector) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
-            .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth ->
-                auth.requestMatchers(new AntPathRequestMatcher("/auth/**")).permitAll()
+                auth.requestMatchers("/error").permitAll()
+                    .requestMatchers(new AntPathRequestMatcher("/api/auth/**")).permitAll()
+                    .requestMatchers(new AntPathRequestMatcher("/api/user/{id}")).hasAnyRole("USER", "ADMIN")
+                    .requestMatchers(new AntPathRequestMatcher("/api/user/**")).hasRole("ADMIN")
                     .anyRequest().authenticated()
             );
 
