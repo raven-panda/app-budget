@@ -1,0 +1,18 @@
+services:
+  budgetdb:
+    image: 'mysql:8'
+    container_name: 'budgetdb'
+    env_file: '.env'
+    environment:
+      - 'MYSQL_DATABASE=budgetdb'
+      - 'MYSQL_PASSWORD=${DATABASE_PASSWORD}'
+      - 'MYSQL_ROOT_PASSWORD=${DATABASE_ROOT_PASSWORD}'
+      - 'MYSQL_USER=${DATABASE_USERNAME}'
+    ports:
+      - '3307:3306'
+    volumes:
+      - type: volume
+        source: budgetdb
+        target: /var/lib/mysql
+volumes:
+  budgetdb:
