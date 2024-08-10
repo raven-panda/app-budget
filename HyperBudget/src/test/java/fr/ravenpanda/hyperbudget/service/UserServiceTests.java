@@ -2,10 +2,9 @@ package fr.ravenpanda.hyperbudget.service;
 
 import fr.ravenpanda.hyperbudget.data.UserTests;
 import fr.ravenpanda.hyperbudget.dto.UserDto;
-import fr.ravenpanda.hyperbudget.model.User;
+import fr.ravenpanda.hyperbudget.model.UserModel;
 import fr.ravenpanda.hyperbudget.repository.UserRepository;
 import fr.ravenpanda.hyperbudget.service.impl.UserServiceImpl;
-import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -14,7 +13,6 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -47,7 +45,7 @@ public class UserServiceTests {
     @Test
     public void UserService_ToEntity_ReturnUserDto() {
         UserDto userDto = userService.toDto(UserTests.user1);
-        User user = userService.toEntity(userDto);
+        UserModel user = userService.toEntity(userDto);
 
         assertThat(UserTests.user1).isNotNull();
         assertThat(userDto).isNotNull();
@@ -66,7 +64,7 @@ public class UserServiceTests {
 
     @Test
     public void UserService_SaveAll_ReturnUserDto() {
-        when(userRepository.save(Mockito.any(User.class))).thenReturn(UserTests.user1);
+        when(userRepository.save(Mockito.any(UserModel.class))).thenReturn(UserTests.user1);
         UserDto savedUser = userService.save(UserTests.userDto1);
 
         assertThat(savedUser).isNotNull();

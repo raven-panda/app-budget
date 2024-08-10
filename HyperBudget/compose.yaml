@@ -11,9 +11,8 @@ services:
     env_file: '.env'
     environment:
       - 'DATABASE_URL=jdbc:mysql://budgetdb:3306/budgetdb'
-      - 'MYSQL_DATABASE=budgetdb'
-      - 'MYSQL_PASSWORD=${DATABASE_PASSWORD}'
-      - 'MYSQL_USER=${DATABASE_USERNAME}'
+      - 'DATABASE_USERNAME=${DATABASE_USERNAME}'
+      - 'DATABASE_PASSWORD=${DATABASE_PASSWORD}'
       - 'SPRING_PROFILES_ACTIVE=preprod'
   budgetdb:
     image: 'mysql:8'

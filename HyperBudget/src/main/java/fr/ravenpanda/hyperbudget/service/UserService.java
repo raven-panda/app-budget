@@ -1,8 +1,8 @@
 package fr.ravenpanda.hyperbudget.service;
 
-import fr.ravenpanda.hyperbudget.common.list.RoleEnum;
 import fr.ravenpanda.hyperbudget.dto.UserDto;
-import fr.ravenpanda.hyperbudget.model.User;
+import fr.ravenpanda.hyperbudget.model.UserModel;
+import fr.ravenpanda.hyperbudget.model.UserRole;
 
 import java.util.List;
 
@@ -10,6 +10,8 @@ public interface UserService {
 
     UserDto findById(Integer id);
     Boolean existsById(Integer id);
+
+    Boolean checkPassword(Integer id, String password);
 
     List<UserDto> findAll();
 
@@ -19,7 +21,7 @@ public interface UserService {
     UserDto findByUsername(String username);
     Boolean existsByUsername(String username);
 
-    List<UserDto> findAllByRole(RoleEnum role);
+    List<UserDto> findAllByRole(UserRole role);
 
     Boolean deleteById(Integer id);
 
@@ -27,8 +29,8 @@ public interface UserService {
 
     UserDto update(Integer id, UserDto user);
 
-    UserDto toDto(User user);
+    UserDto toDto(UserModel user);
 
-    User toEntity(UserDto userDto);
+    UserModel toEntity(UserDto userDto);
 
 }

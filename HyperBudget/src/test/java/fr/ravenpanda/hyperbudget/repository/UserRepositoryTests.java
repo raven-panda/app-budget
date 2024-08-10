@@ -2,10 +2,9 @@ package fr.ravenpanda.hyperbudget.repository;
 
 import fr.ravenpanda.hyperbudget.common.list.PeriodTypeEnum;
 import fr.ravenpanda.hyperbudget.common.list.PreferredThemeEnum;
-import fr.ravenpanda.hyperbudget.common.list.RoleEnum;
 import fr.ravenpanda.hyperbudget.data.UserTests;
-import fr.ravenpanda.hyperbudget.model.User;
-import static org.assertj.core.api.Assertions.assertThat;
+import fr.ravenpanda.hyperbudget.model.UserModel;
+import fr.ravenpanda.hyperbudget.model.UserRole;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
@@ -13,6 +12,8 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
@@ -23,9 +24,9 @@ public class UserRepositoryTests {
 
     @Test
     public void UserRepository_GetAll_ReturnAllUsers() {
-        User savedUser1 = userRepository.save(UserTests.user1);
-        User savedUser2 = userRepository.save(UserTests.user2);
-        List<User> usersList = userRepository.findAll();
+        UserModel savedUser1 = userRepository.save(UserTests.user1);
+        UserModel savedUser2 = userRepository.save(UserTests.user2);
+        List<UserModel> usersList = userRepository.findAll();
 
         assertThat(UserTests.user1).isNotNull();
         assertThat(UserTests.user2).isNotNull();
@@ -39,8 +40,8 @@ public class UserRepositoryTests {
 
     @Test
     public void UserRepository_SaveAll_ReturnSavedUsers() {
-        User savedUser1 = userRepository.save(UserTests.user1);
-        User savedUser2 = userRepository.save(UserTests.user2);
+        UserModel savedUser1 = userRepository.save(UserTests.user1);
+        UserModel savedUser2 = userRepository.save(UserTests.user2);
 
         assertThat(UserTests.user1).isNotNull();
         assertThat(UserTests.user2).isNotNull();
@@ -50,8 +51,8 @@ public class UserRepositoryTests {
 
     @Test
     public void UserRepository_GetById_ReturnUser() {
-        User savedUser = userRepository.save(UserTests.user1);
-        User foundUser = userRepository.findById(savedUser.getId()).orElse(null);
+        UserModel savedUser = userRepository.save(UserTests.user1);
+        UserModel foundUser = userRepository.findById(savedUser.getId()).orElse(null);
 
         assertThat(foundUser).isNotNull();
         assertThat(foundUser.getId()).isEqualTo(savedUser.getId());
@@ -59,8 +60,8 @@ public class UserRepositoryTests {
 
     @Test
     public void UserRepository_GetByEmail_ReturnUser() {
-        User savedUser = userRepository.save(UserTests.user1);
-        User foundUser = userRepository.findByEmail(savedUser.getEmail()).orElse(null);
+        UserModel savedUser = userRepository.save(UserTests.user1);
+        UserModel foundUser = userRepository.findByEmail(savedUser.getEmail()).orElse(null);
 
         assertThat(foundUser).isNotNull();
         assertThat(foundUser.getId()).isEqualTo(savedUser.getId());
@@ -68,8 +69,8 @@ public class UserRepositoryTests {
 
     @Test
     public void UserRepository_GetByUsername_ReturnUser() {
-        User savedUser = userRepository.save(UserTests.user1);
-        User foundUser = userRepository.findByUsername(savedUser.getUsername()).orElse(null);
+        UserModel savedUser = userRepository.save(UserTests.user1);
+        UserModel foundUser = userRepository.findByUsername(savedUser.getUsername()).orElse(null);
 
         assertThat(foundUser).isNotNull();
         assertThat(foundUser.getId()).isEqualTo(savedUser.getId());
@@ -77,10 +78,10 @@ public class UserRepositoryTests {
 
     @Test
     public void UserRepository_GetAllByRole_ReturnUser() {
-        User savedUser1 = userRepository.save(UserTests.user1);
-        User savedUser2 = userRepository.save(UserTests.user2);
-        User savedAdmin = userRepository.save(UserTests.admin1);
-        List<User> usersList = userRepository.findAllByRole(RoleEnum.USER);
+        UserModel savedUser1 = userRepository.save(UserTests.user1);
+        UserModel savedUser2 = userRepository.save(UserTests.user2);
+        UserModel savedAdmin = userRepository.save(UserTests.admin1);
+        List<UserModel> usersList = userRepository.findAllByRole(UserRole.builder().name("ROLE_USER").build());
 
         assertThat(UserTests.user1).isNotNull();
         assertThat(UserTests.user2).isNotNull();
@@ -96,7 +97,7 @@ public class UserRepositoryTests {
 
     @Test
     public void UserRepository_Update_ReturnUpdatedUser() {
-        User originalUser = userRepository.save(UserTests.user1);
+        UserModel originalUser = userRepository.save(UserTests.user1);
 
         originalUser.setEmail("another@aa.fr");
         originalUser.setUsername("UpdatedUser1");
@@ -104,7 +105,7 @@ public class UserRepositoryTests {
         originalUser.setPeriodType(PeriodTypeEnum.YEARLY);
         originalUser.setIsEditWarnEnabled(false);
 
-        User updatedUser = userRepository.save(originalUser);
+        UserModel updatedUser = userRepository.save(originalUser);
 
         assertThat(originalUser).isNotNull();
         assertThat(originalUser.getId()).isGreaterThan(0);
@@ -120,10 +121,10 @@ public class UserRepositoryTests {
 
     @Test
     public void UserRepository_Delete_ReturnVoid() {
-        User savedUser = userRepository.save(UserTests.user1);
+        UserModel savedUser = userRepository.save(UserTests.user1);
         userRepository.deleteById(savedUser.getId());
 
-        User foundUser = userRepository.findById(savedUser.getId()).orElse(null);
+        UserModel foundUser = userRepository.findById(savedUser.getId()).orElse(null);
 
         assertThat(savedUser).isNotNull();
         assertThat(foundUser).isNull();

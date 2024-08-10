@@ -1,17 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+import { RouterProvider } from "react-router-dom";
 import reportWebVitals from './reportWebVitals';
+import router from './routes';
+import UserService from '@service/UserService';
+import { UserContext } from '@service/context/UserContext';
+
+export default function App() {
+  const userService = new UserService();
+
+  return (
+    <React.StrictMode>
+      <UserContext.Provider value={userService.getUser(2)}>
+        <RouterProvider router={router}/>
+      </UserContext.Provider>
+    </React.StrictMode>
+  )
+}
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+root.render(<App />);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

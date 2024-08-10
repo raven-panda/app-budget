@@ -4,7 +4,7 @@ import fr.ravenpanda.hyperbudget.common.list.DefaultCategoryEnum;
 import fr.ravenpanda.hyperbudget.data.ExpenseTests;
 import fr.ravenpanda.hyperbudget.data.UserTests;
 import fr.ravenpanda.hyperbudget.model.Expense;
-import fr.ravenpanda.hyperbudget.model.User;
+import fr.ravenpanda.hyperbudget.model.UserModel;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
@@ -28,7 +28,7 @@ public class ExpenseRepositoryTests {
 
     @Test
     public void ExpenseRepository_GetAll_ReturnAllUsers() {
-        User savedUser = userRepository.save(UserTests.user1);
+        UserModel savedUser = userRepository.save(UserTests.user1);
         Expense expense1 = ExpenseTests.expense1;
         Expense expense2 = ExpenseTests.expense2;
         expense1.setUser(savedUser);
@@ -51,7 +51,7 @@ public class ExpenseRepositoryTests {
 
     @Test
     public void ExpenseRepository_SaveAll_ReturnSavedUsers() {
-        User savedUser = userRepository.save(UserTests.user1);
+        UserModel savedUser = userRepository.save(UserTests.user1);
         Expense expense1 = ExpenseTests.expense1;
         Expense expense2 = ExpenseTests.expense2;
         expense1.setUser(savedUser);
@@ -71,7 +71,7 @@ public class ExpenseRepositoryTests {
 
     @Test
     public void ExpenseRepository_GetById_ReturnUser() {
-        User savedUser = userRepository.save(UserTests.user1);
+        UserModel savedUser = userRepository.save(UserTests.user1);
         Expense expense = ExpenseTests.expense1;
         expense.setUser(savedUser);
 
@@ -88,8 +88,8 @@ public class ExpenseRepositoryTests {
     public void ExpenseRepository_Update_ReturnUpdatedUser() {
         Date newDate = new Date(System.currentTimeMillis() - 3555666);
 
-        User savedUser1 = userRepository.save(UserTests.user1);
-        User savedUser2 = userRepository.save(UserTests.user2);
+        UserModel savedUser1 = userRepository.save(UserTests.user1);
+        UserModel savedUser2 = userRepository.save(UserTests.user2);
         Expense expense1 = ExpenseTests.expense1;
         expense1.setUser(savedUser1);
 
@@ -120,7 +120,7 @@ public class ExpenseRepositoryTests {
 
     @Test
     public void ExpenseRepository_Delete_ReturnVoid() {
-        User savedUser = userRepository.save(UserTests.user1);
+        UserModel savedUser = userRepository.save(UserTests.user1);
         Expense expense = ExpenseTests.expense1;
         expense.setUser(savedUser);
 

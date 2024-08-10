@@ -1,0 +1,55 @@
+{
+  "id": 1,
+  "role": "USER",
+  "email": "jdoe@gmail.com",
+  "username": "John Doe",
+  "password": "powerfullLol1234*",
+  "createdAt": "03-07-2024 20:26:26",
+  "updatedAt": "03-07-2024 20:26:26",
+  "theme": "LIGHT",
+  "periodType": "MONTHLY",
+  "isEditWarnEnabled": true,
+  "totalExpensesAmount": 79.68,
+  "expenses": [
+    {
+      "id": 1,
+      "userId": 1,
+      "name": "Taxi",
+      "amount": 12.25,
+      "date": "06-28-2024",
+      "category": "TRANSPORT",
+      "createdAt": "03-07-2024 23:36:12",
+      "updatedAt": "03-07-2024 23:36:12"
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "name": "Nourriture pour chien",
+      "amount": 12.56,
+      "date": "06-05-2024",
+      "category": "ANIMALS",
+      "createdAt": "03-07-2024 23:36:12",
+      "updatedAt": "03-07-2024 23:36:12"
+    },
+    {
+      "id": 3,
+      "userId": 1,
+      "name": "Assurance Auto",
+      "amount": 54.87,
+      "date": "05-02-2024",
+      "category": "INSURANCE",
+      "createdAt": "03-07-2024 23:36:12",
+      "updatedAt": "03-07-2024 23:36:12"
+    },
+    {
+      "id": 4,
+      "userId": 1,
+      "name": "Test",
+      "amount": 78.1,
+      "date": "05-02-2024",
+      "category": "INSURANCE",
+      "createdAt": "03-07-2024 23:36:12",
+      "updatedAt": "03-07-2024 23:36:12"
+    }
+  ]
+}

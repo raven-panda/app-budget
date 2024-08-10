@@ -18,9 +18,17 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@component/*": ["src/component/*"],
+      "@scene/*": ["src/scene/*"],
+      "@service/*": ["src/service/*"],
+      "@model/*": ["src/model/*"]
+    }
   },
   "include": [
-    "src"
+    "src",
+    "fixture"
   ]
 }

@@ -3,7 +3,7 @@
 
     <include file="classpath:config/liquibase/changelog/062024/000000000000_initial_schema.xml" relativeToChangelogFile="false" />
     <include file="classpath:config/liquibase/changelog/062024/061420242001_created_user_table.xml" relativeToChangelogFile="false" />
-    <include file="classpath:config/liquibase/changelog/062024/062820240951_added_role_column.xml" relativeToChangelogFile="false" />
     <include file="classpath:config/liquibase/changelog/062024/062820241007_alter_edit_warn_column.xml" relativeToChangelogFile="false" />
     <include file="classpath:config/liquibase/changelog/062024/062920240124_created_expense_table.xml" relativeToChangelogFile="false" />
+    <include file="classpath:config/liquibase/changelog/082024/080920241917_created_role_table.xml" relativeToChangelogFile="false" />
 </databaseChangeLog>

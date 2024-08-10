@@ -2,7 +2,6 @@ package fr.ravenpanda.hyperbudget.model;
 
 import fr.ravenpanda.hyperbudget.common.list.PeriodTypeEnum;
 import fr.ravenpanda.hyperbudget.common.list.PreferredThemeEnum;
-import fr.ravenpanda.hyperbudget.common.list.RoleEnum;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -11,6 +10,8 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,6 +21,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -27,14 +29,14 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class UserModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false, columnDefinition = "enum('USER', 'ADMIN')")
-    @Enumerated(EnumType.STRING)
-    private RoleEnum role;
+    @ManyToOne(targetEntity = UserRole.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "role_id", nullable = false)
+    private UserRole role;
 
     @Column(nullable = false, unique = true)
     private String email;
@@ -47,11 +49,11 @@ public class User {
 
     @Column(nullable = false, updatable = false)
     @CreationTimestamp
-    private LocalDateTime createdAt;
+    private Date createdAt;
 
     @Column(nullable = false)
     @UpdateTimestamp
-    private LocalDateTime updatedAt;
+    private Date updatedAt;
 
     @Column(nullable = false, columnDefinition = "enum('LIGHT', 'DARK')")
     @Enumerated(EnumType.STRING)
