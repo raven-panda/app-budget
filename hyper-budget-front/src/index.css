@@ -8,21 +8,21 @@
     font-style: normal;
     font-weight: 300;
     font-display: swap;
-    src: url(/assets/font/LexendDeca-Light.ttf) format('truetype');
+    src: url(../public/assets/font/LexendDeca-Light.ttf) format('truetype');
   }
   @font-face {
     font-family: "Lexend Deca";
     font-style: normal;
     font-weight: 400;
     font-display: swap;
-    src: url(/assets/font/LexendDeca-Regular.ttf) format('truetype');
+    src: url(../public/assets/font/LexendDeca-Regular.ttf) format('truetype');
   }
   @font-face {
     font-family: "Lexend Deca";
     font-style: normal;
     font-weight: 700;
     font-display: swap;
-    src: url(/assets/font/LexendDeca-Bold.ttf) format('truetype');
+    src: url(../public/assets/font/LexendDeca-Bold.ttf) format('truetype');
   }
 }
 
@@ -38,4 +38,17 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+body {
+  min-height: 100vh;
+}
+
+.btn-primary {
+  @apply bg-primary text-secondary;
+  display: block;
+  border: none;
+  padding: 16px 24px;
+  border-radius: 12px;
+  cursor: pointer;
 }
