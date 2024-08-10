@@ -24,7 +24,7 @@ public class UserRole {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false, length = 20)
+    @Column(nullable = false, length = 20, unique = true)
     private String name;
 
     @OneToMany(targetEntity = UserModel.class, fetch = FetchType.LAZY)
