@@ -12,7 +12,7 @@ interface IExpenseByDate {
   expenses: IExpenseDto[];
 };
 export default function DashboardExpensePage() {
-  const user = useContext(UserContext);
+  const user = useContext(UserContext)[0];
 
   /**
    * Group and sort expenses groups by date
