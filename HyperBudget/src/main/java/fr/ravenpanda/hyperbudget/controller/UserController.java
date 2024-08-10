@@ -81,6 +81,18 @@ public class UserController {
         return updatedDto != null ? ResponseEntity.ok(updatedDto) : ResponseEntity.noContent().build();
     }
 
+    // TODO : add request for password forgotten with mailing and delete the above one
+
+    @PutMapping("/change-password/{id}")
+    public ResponseEntity<UserDto> changePassword(@PathVariable Integer id, @RequestParam String oldPassword, @RequestParam String newPassword) {
+        if (!service.checkPassword(id, oldPassword)) return ResponseEntity.badRequest().build();
+
+        UserDto user = service.findById(id);
+        user.setPassword(newPassword);
+
+        return ResponseEntity.ok(service.update(id, user));
+    }
+
     @DeleteMapping("/{id}/{password}")
     public ResponseEntity<Boolean> update(@PathVariable Integer id, @PathVariable String password) {
         if (!service.checkPassword(id, password)) return ResponseEntity.badRequest().build();
