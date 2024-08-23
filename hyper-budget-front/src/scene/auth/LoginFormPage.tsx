@@ -1,50 +1,32 @@
 import { FormTextField } from "@component/form/FormTextField";
 import GreetingsImage from "@component/icon/GreetingsImage";
 import { Checkbox } from "@mui/material";
-import ApiUrls from "@service/ApiUrls";
-import {  useState } from "react";
-import { CookiesProvider, useCookies } from "react-cookie";
+import { useAuthToken, useAuthUser } from "@service/context/UserContext";
+import { useState } from "react";
 import { toast } from "react-toastify";
 import { twMerge } from "tailwind-merge";
 
 export default function LoginFormPage() {
-  const [cookies, setCookie, removeCookie] = useCookies();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isValid, setIsValid] = useState(true);
+  
+  const [user, setUser] = useAuthUser();
+  const [token] = useAuthToken();
 
   const onFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setIsSubmitting(true);
     
-    const form = event.currentTarget as HTMLFormElement;
-    const formData = {
-      email: form.email.value,
-      password: form.password.value
-    };
+    const form = event.currentTarget;
 
-    
     if (form.checkValidity()) {
-      fetch(ApiUrls.LOGIN, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error("Erreur lors de la connexion : " + response.statusText);
-        }
-        return response.json();
-      })
-      .then(data => {
-        setCookie("token", data.token, { path: "/", sameSite: "strict" });
-      })
-      .catch(error => {
-        setIsValid(false);
+      setIsSubmitting(true);
+      try {
+        setUser(form.email.value, form.password.value);
+      } catch (error) {
         console.error(error);
         toast.error("Vos identifiants sont incorrects");
-      })
+      }
     } else {
       setIsValid(form.checkValidity());
     }

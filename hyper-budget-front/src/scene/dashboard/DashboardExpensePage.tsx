@@ -1,24 +1,23 @@
 import DashboardHeader from "@component/dashboard/DashboardHeader";
-import { useContext } from "react";
-import { UserContext } from "@service/context/UserContext";
-import { Link } from "react-router-dom";
-import IExpenseDto from "@model/dto/IExpenseDto";
-import DateUtils from "@service/utils/DateUtils";
-import ExpenseService from "@service/ExpenseService";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import IExpenseDto from "@model/dto/IExpenseDto";
+import { useAuthUser } from "@service/context/UserContext";
+import ExpenseService from "@service/ExpenseService";
+import DateUtils from "@service/utils/DateUtils";
+import { Link } from "react-router-dom";
 
 interface IExpenseByDate {
   date: Date;
   expenses: IExpenseDto[];
 };
 export default function DashboardExpensePage() {
-  const user = useContext(UserContext)[0];
+  const [user] = useAuthUser();
 
   /**
    * Group and sort expenses groups by date
    */ 
   const categorizeExpensesByDate = (): IExpenseByDate[] => {
-    const expensesByDate: IExpenseByDate[] = [];
+    const expensesByDate: IExpenseByDate[] = [];    
 
     user?.expenses?.forEach((expense) => {
       if (expensesByDate.some((item) => item.date.getTime() === expense.date.getTime()))

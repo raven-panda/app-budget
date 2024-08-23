@@ -1,23 +1,20 @@
+import { AuthContext } from '@service/context/UserContext';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import { RouterProvider } from "react-router-dom";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import './index.css';
 import reportWebVitals from './reportWebVitals';
 import router from './routes';
-import UserService from '@service/UserService';
-import { UserContext } from '@service/context/UserContext';
-import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer } from 'react-toastify';
 
 export default function App() {
-  const userService = new UserService();
-
   return (
     <React.StrictMode>
-      <UserContext.Provider value={[userService.getUser(), ""]}>
+      <AuthContext>
         <ToastContainer/>
         <RouterProvider router={router}/>
-      </UserContext.Provider>
+      </AuthContext>
     </React.StrictMode>
   )
 }
