@@ -1,8 +1,8 @@
 package fr.ravenpanda.hyperbudget.controller;
 
-import fr.ravenpanda.hyperbudget.common.list.PeriodTypeEnum;
 import fr.ravenpanda.hyperbudget.common.list.PreferredThemeEnum;
 import fr.ravenpanda.hyperbudget.config.security.service.JwtUtils;
+import fr.ravenpanda.hyperbudget.config.security.service.UserDetailsImpl;
 import fr.ravenpanda.hyperbudget.dto.UserDto;
 import fr.ravenpanda.hyperbudget.dto.auth.AuthResponse;
 import fr.ravenpanda.hyperbudget.dto.auth.LoginDto;
@@ -33,15 +33,13 @@ public class AuthenticationController {
 
     private final AuthenticationManager authenticationManager;
     private final UserService userService;
-    private final UserRoleRepository userRoleRepository;
     private final PasswordEncoder encoder;
     private final JwtUtils jwtUtils;
 
     @Autowired
-    public AuthenticationController(AuthenticationManager authenticationManager, UserService userService, UserRoleRepository userRoleRepository, PasswordEncoder encoder, JwtUtils jwtUtils) {
+    public AuthenticationController(AuthenticationManager authenticationManager, UserService userService, PasswordEncoder encoder, JwtUtils jwtUtils) {
         this.authenticationManager = authenticationManager;
         this.userService = userService;
-        this.userRoleRepository = userRoleRepository;
         this.encoder = encoder;
         this.jwtUtils = jwtUtils;
     }
@@ -82,7 +80,10 @@ public class AuthenticationController {
                 new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        return AuthResponse.builder().token(jwtUtils.generateJwtToken(authentication)).build();
+
+        Integer id = ((UserDetailsImpl) authentication.getPrincipal()).getId();
+
+        return AuthResponse.builder().id(id).token(jwtUtils.generateJwtToken(authentication)).build();
     }
 
 }
