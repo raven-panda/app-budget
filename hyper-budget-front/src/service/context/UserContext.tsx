@@ -1,12 +1,12 @@
 import AuthService from "@service/AuthService";
 import UserService from "@service/UserService";
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import IUserDto from "src/model/dto/IUserDto";
 
 const authService = new AuthService(new UserService());
 
-const UserContext = React.createContext<[IUserDto, (email: string, password: string) => void]>([{} as IUserDto, () => {}]);
+const UserContext = React.createContext<[IUserDto, (email: string, password: string) => Promise<void>]>([{} as IUserDto, async () => {}]);
 const TokenContext = React.createContext<[string]>([""]);
 
 export const AuthContext = ({children}: {children: ReactNode}) => {

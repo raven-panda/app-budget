@@ -6,8 +6,8 @@ export default class UserService {
 
   private user: IUserDto = {} as IUserDto;
 
-  public getApiUser(id: number, token: string): IUserDto {
-    fetch(ApiUrls.USER.replace("{id}", id.toString()), {
+  public async getApiUser(id: number, token: string): Promise<IUserDto> {
+    return fetch(ApiUrls.USER.replace("{id}", id.toString()), {
       method: "GET",
       headers: {
         "Authorization": "Bearer " + token,
@@ -21,12 +21,12 @@ export default class UserService {
     })
     .then(data => {
       this.user = data;
+      return data;
     })
     .catch(error => {
       console.error(error);
       toast.error("Erreur lors de la récupération de l'utilisateur");
+      return null;
     })
-
-    return this.user;
   }
 }

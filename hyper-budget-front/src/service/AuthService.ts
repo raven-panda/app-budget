@@ -33,10 +33,10 @@ export default class AuthService {
       }
       return response.json();
     })
-    .then(data => {
+    .then(async data => {
       token = data.token;
       id = data.id;
-      user = this.userService.getApiUser(id, token);
+      user = await this.userService.getApiUser(id, token);
 
       return {userDto: user, tokenDto: token};
     })
