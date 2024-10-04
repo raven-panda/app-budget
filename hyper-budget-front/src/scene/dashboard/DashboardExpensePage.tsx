@@ -4,7 +4,9 @@ import IExpenseDto from "@model/dto/IExpenseDto";
 import { useAuthUser } from "@service/context/UserContext";
 import ExpenseService from "@service/ExpenseService";
 import DateUtils from "@service/utils/DateUtils";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import router from "src/routes";
 
 interface IExpenseByDate {
   date: Date;
@@ -12,6 +14,11 @@ interface IExpenseByDate {
 };
 export default function DashboardExpensePage() {
   const [user] = useAuthUser();
+
+  useEffect(() => {
+    if (!user || Object.values(user).length === 0)
+      router.navigate("/auth/login");
+  }, [user])
 
   /**
    * Group and sort expenses groups by date
