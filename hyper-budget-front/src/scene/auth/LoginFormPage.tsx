@@ -1,18 +1,13 @@
 import { FormTextField } from "@component/form/FormTextField";
 import GreetingsImage from "@component/icon/GreetingsImage";
 import { Checkbox } from "@mui/material";
-import { useAuthToken, useAuthUser } from "@service/context/UserContext";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { toast } from "react-toastify";
-import router from "src/routes";
 import { twMerge } from "tailwind-merge";
 
 export default function LoginFormPage() {  
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isValid, setIsValid] = useState(true);
-  
-  const [user, setUser] = useAuthUser();
-  const [token] = useAuthToken();
 
   const onFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -23,7 +18,7 @@ export default function LoginFormPage() {
     if (form.checkValidity()) {
       setIsSubmitting(true);
       try {
-        await setUser(form.email.value, form.password.value);
+        // Call user login API here
       } catch (error) {
         console.error(error);
         toast.error("Vos identifiants sont incorrects");
@@ -35,10 +30,10 @@ export default function LoginFormPage() {
     setIsSubmitting(false);
   }
 
-  useEffect(() => {
+  /*useEffect(() => {
     if (user && Object.values(user).length > 0)
       router.navigate("/dashboard/expense");
-  }, [user])
+  }, [user])*/
 
   return (
     <main className="min-h-screen bg-primary flex flex-col">

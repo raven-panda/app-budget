@@ -1,4 +1,3 @@
-import { AuthContext } from '@service/context/UserContext';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { RouterProvider } from "react-router-dom";
@@ -11,10 +10,8 @@ import router from './routes';
 export default function App() {
   return (
     <React.StrictMode>
-      <AuthContext>
-        <ToastContainer/>
-        <RouterProvider router={router}/>
-      </AuthContext>
+      <ToastContainer/>
+      <RouterProvider router={router}/>
     </React.StrictMode>
   )
 }
