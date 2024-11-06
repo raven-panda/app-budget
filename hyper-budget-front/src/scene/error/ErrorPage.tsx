@@ -14,7 +14,7 @@ export default function ErrorPage({data}: {data?: ResponseErrorEnum}) {
       {/**
        * @TODO Show error details only in development
        */}
-      <p><i>{(error?.status || "") + " " + (error?.statusText || "")}</i></p>
+      <p><i>{[error?.status, error?.statusText, null].map(e => e).join(" ")}</i></p>
       <p><i>{error?.data}</i></p>
     </div>
   );
