@@ -5,21 +5,37 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import router from './routes';
+import { router } from './router/router';
+import { QueryClientProvider } from 'react-query';
+import { queryClient } from './api/Request';
+
+const IS_STRICT_MODE = process.env.REACT_APP_STRICT_MODE_ENABLED === "true";
 
 export default function App() {
-  return (
-    <React.StrictMode>
-      <ToastContainer/>
-      <RouterProvider router={router}/>
-    </React.StrictMode>
-  )
+  return IS_STRICT_MODE ?
+      <React.StrictMode>
+        <ToastContainer/>
+        <QueryClientProvider client={queryClient}>
+          <RouterProvider router={router}/>
+        </QueryClientProvider>
+      </React.StrictMode>
+      : <>
+        <ToastContainer/>
+        <QueryClientProvider client={queryClient}>
+          <RouterProvider router={router}/>
+        </QueryClientProvider>
+      </>
 }
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
-root.render(<App />);
+let container: HTMLElement|null = null;
+
+document.addEventListener('DOMContentLoaded', function(event) {
+  if (!container) {
+    container = document.getElementById('root') as HTMLElement;
+    const root = ReactDOM.createRoot(container)
+    root.render(<App/>);
+  }
+});
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

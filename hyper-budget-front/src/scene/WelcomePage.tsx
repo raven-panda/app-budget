@@ -1,6 +1,11 @@
 import GrowMoneyImage from "@component/icon/GrowMoneyImage";
+import { useLoaderData } from "react-router-dom";
 
 export default function WelcomePage() {
+  const loaderData = useLoaderData();
+
+  console.log(loaderData);
+  
   return (
     <main className="min-h-screen bg-primary flex flex-col">
       <section className="flex items-center justify-center flex-1 py-20px">
