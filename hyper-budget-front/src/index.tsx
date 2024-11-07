@@ -9,7 +9,7 @@ import { router } from './router/router';
 import { QueryClientProvider } from 'react-query';
 import { queryClient } from './api/Request';
 
-const IS_STRICT_MODE = process.env.REACT_APP_STRICT_MODE_ENABLED === "true";
+const IS_STRICT_MODE = import.meta.env.VITE_STRICT_MODE_ENABLED === "true";
 
 export default function App() {
   return IS_STRICT_MODE ?

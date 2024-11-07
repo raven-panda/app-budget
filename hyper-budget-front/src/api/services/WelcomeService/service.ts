@@ -1,5 +1,5 @@
 import { QueryClient } from "react-query";
-import { apiClient } from "src/api/Request";
+import { apiClient } from "@/api/Request";
 
 const getWelcomeDetails = () => ({
   queryKey: "welcome-get",

@@ -1,8 +1,8 @@
 import ErrorPage from "@scene/error/ErrorPage";
 import WelcomePage from "@scene/WelcomePage";
 import { createBrowserRouter, Outlet } from "react-router-dom";
-import { queryClient } from "src/api/Request";
-import WelcomeService from "src/api/services/WelcomeService/service";
+import { queryClient } from "@/api/Request";
+import WelcomeService from "@/api/services/WelcomeService/service";
 
 export const clientRoutes = {
   root: "/"
