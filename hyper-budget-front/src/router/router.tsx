@@ -4,7 +4,7 @@ import ErrorPage from "@scene/error/ErrorPage";
 import WelcomePage from "@scene/WelcomePage";
 import { createBrowserRouter, Outlet } from "react-router-dom";
 import { loader } from "./loader";
-import ExpensesService from "@/api/services/ExpenseService";
+import UserService from "@/api/services/UserService";
 
 export const clientRoutes = {
   root: "/",
@@ -28,7 +28,7 @@ export const router = createBrowserRouter([
           {
             path: "",
             element: <DashboardHomePage />, 
-            loader: loader(queryClient, ExpensesService.getExpensesData())
+            loader: loader(queryClient, UserService.getUserByUsername())
           }
         ]
       }
