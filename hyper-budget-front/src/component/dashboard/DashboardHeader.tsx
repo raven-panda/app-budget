@@ -4,11 +4,10 @@ import { faBell, faUser } from '@fortawesome/free-solid-svg-icons'
 
 interface DashboardHeaderProps {
   username: string;
+  notifications?: any[];
   children?: React.ReactNode;
 }
-export default function DashboardHeader({ children, username }: DashboardHeaderProps) {
-  const notifications = 0;
-
+export default function DashboardHeader({ children, username, notifications }: DashboardHeaderProps) {
   return (
     <header>
       <Container background="bg-secondary">
@@ -20,10 +19,10 @@ export default function DashboardHeader({ children, username }: DashboardHeaderP
             <h1 className="text-base font-regular">Bonjour, {username} !</h1>
               <p className="hidden xs:block text-xs">
                 <span className="text-primary-faded">
-                  { notifications > 0 ? 
+                  { notifications && notifications.length > 0 ? 
                     <>
-                      Vous avez <span className="text-red-600">{notifications}</span> notification{notifications > 1 ? "s": ""} en attente
-                    </> : "Vous n’avez aucune nouvelle notification"
+                      Vous avez <span className="text-red-600">{notifications}</span> notification{notifications.length !== 1 ? "s": ""} en attente
+                    </> : <>Aucune nouvelle notification</>
                   }
                 </span>
               </p>
