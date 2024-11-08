@@ -1,3 +1,5 @@
+import { PeriodTypeEnum } from "../enum/PeriodTypeEnum";
+import { PreferredThemeEnum } from "../enum/PreferredThemeEnum";
 import IExpenseDto from "./IExpenseDto";
 
 export default interface IUserDto {
@@ -6,10 +8,10 @@ export default interface IUserDto {
   email: string;
   username: string;
   password: string;
-  createdAt: string;
-  updatedAt: string;
-  theme: string;
-  periodType: string;
+  createdAt: Date;
+  updatedAt: Date;
+  theme: PreferredThemeEnum;
+  periodType: PeriodTypeEnum;
   isEditWarnEnabled: boolean;
   totalExpensesAmount: number;
   expenses: IExpenseDto[];

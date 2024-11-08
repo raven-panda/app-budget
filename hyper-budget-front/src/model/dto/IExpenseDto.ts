@@ -7,6 +7,6 @@ export default interface IExpenseDto {
 	amount: number;
 	date: Date;
 	category: DefaultCategoryType;
-	createdAt: string;
-	updatedAt: string;
+	createdAt: Date;
+	updatedAt: Date;
 }
