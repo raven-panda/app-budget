@@ -1,11 +1,14 @@
+import { queryClient } from "@/api/Request";
+import DashboardHomePage from "@/scene/dashboard/DashboardHomePage";
 import ErrorPage from "@scene/error/ErrorPage";
 import WelcomePage from "@scene/WelcomePage";
 import { createBrowserRouter, Outlet } from "react-router-dom";
-import { queryClient } from "@/api/Request";
-import WelcomeService from "@/api/services/WelcomeService/service";
+import { loader } from "./loader";
+import ExpensesService from "@/api/services/ExpenseService";
 
 export const clientRoutes = {
-  root: "/"
+  root: "/",
+  dashboard: "dashboard"
 }
 
 export const router = createBrowserRouter([
@@ -16,8 +19,18 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <WelcomePage />,
-        loader: WelcomeService.loader(queryClient)
+        element: <WelcomePage />
+      },
+      {
+        path: clientRoutes.dashboard,
+        element: <Outlet/>,
+        children: [
+          {
+            path: "",
+            element: <DashboardHomePage />, 
+            loader: loader(queryClient, ExpensesService.getExpensesData())
+          }
+        ]
       }
     ]
   },
