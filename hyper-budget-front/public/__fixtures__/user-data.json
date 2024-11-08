@@ -11,6 +11,7 @@
     "periodType": 0,
     "isEditWarnEnabled": true,
     "totalExpensesAmount": 1000,
+    "notifications": [],
     "expenses": [
       {
         "id": 1,

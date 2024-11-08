@@ -14,5 +14,6 @@ export default interface IUserDto {
   periodType: PeriodTypeEnum;
   isEditWarnEnabled: boolean;
   totalExpensesAmount: number;
+  notifications: any[];
   expenses: IExpenseDto[];
 }
