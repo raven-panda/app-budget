@@ -1,3 +1,4 @@
+import { CookiesUtils } from "@/utils/CookiesUtils";
 import axios from "axios";
 import { QueryClient } from "react-query";
 
@@ -8,6 +9,7 @@ export const queryClient = new QueryClient();
 export const apiClient = axios.create({
     baseURL: BASE_URL,
     headers: {
+      Authorization: `Bearer ${CookiesUtils.getCookie("access_token")}`,
       Accept: "application/json, text/plain, */*",
     }
 })
