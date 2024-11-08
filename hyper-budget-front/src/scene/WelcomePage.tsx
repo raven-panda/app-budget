@@ -1,5 +1,5 @@
 import GrowMoneyImage from "@component/icon/GrowMoneyImage";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 export default function WelcomePage() {
   const loaderData = useLoaderData();
@@ -15,10 +15,10 @@ export default function WelcomePage() {
         <h1 className="text-3xl font-bold mb-20px">L’application pour gérer votre budget</h1>
         <p className="mb-20px">
           <b>HyperBudget</b> est conçu pour simplifier la gestion de votre argent et vous aider à atteindre vos objectifs financiers avec sérénité.
-        </p>
-        <a href="/auth/login" className="btn-primary w-full py-16px">Se connecter</a>
+        </p> 
+        <Link to={"/auth/login"} className="btn-primary w-full py-16px">Se connecter</Link>
         <p>ou</p>
-        <a href="/auth/register" className="text-tertiary">Créer un compte</a>
+        <Link to={"/auth/register"} className="text-tertiary">Créer un compte</Link>
       </section>
     </main>
   )
