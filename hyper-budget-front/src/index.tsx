@@ -12,19 +12,14 @@ import { queryClient } from './api/Request';
 const IS_STRICT_MODE = import.meta.env.VITE_STRICT_MODE_ENABLED === "true";
 
 export default function App() {
-  return IS_STRICT_MODE ?
-      <React.StrictMode>
-        <ToastContainer/>
-        <QueryClientProvider client={queryClient}>
-          <RouterProvider router={router}/>
-        </QueryClientProvider>
-      </React.StrictMode>
-      : <>
-        <ToastContainer/>
-        <QueryClientProvider client={queryClient}>
-          <RouterProvider router={router}/>
-        </QueryClientProvider>
-      </>
+  return (
+    <>
+      <ToastContainer/>
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router}/>
+      </QueryClientProvider>
+    </>
+  )
 }
 
 let container: HTMLElement|null = null;
@@ -33,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
   if (!container) {
     container = document.getElementById('root') as HTMLElement;
     const root = ReactDOM.createRoot(container)
-    root.render(<App/>);
+    root.render(IS_STRICT_MODE ? <React.StrictMode><App/></React.StrictMode> : <App/>);
   }
 });
 
