@@ -1,0 +1,42 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="110720242122-1" author="amaire">
+        <createTable tableName="rp_budget">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" primaryKeyName="budget_pk"/>
+            </column>
+
+            <column name="max_amount" type="decimal(30, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="start_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="category" type="enum('INSURANCE', 'TRANSPORT', 'LEISURE', 'FOOD', 'DIGITAL', 'HOUSING', 'HEALTH', 'TAXES', 'ANIMALS', 'CHILDREN', 'OTHER')">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="user_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="created_at" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint
+            baseTableName="rp_budget"
+            baseColumnNames="user_id"
+            constraintName="budget_user_fk"
+            referencedTableName="rp_user"
+            referencedColumnNames="id"
+            onDelete="CASCADE"
+        />
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,45 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="110720242127-1" author="amaire">
+        <createTable tableName="rp_income">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" primaryKeyName="income_pk"/>
+            </column>
+
+            <column name="name" type="varchar(45)">
+                <constraints nullable="false" unique="true" uniqueConstraintName="income_name_uk"/>
+            </column>
+            <column name="amount" type="decimal(30, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="category" type="enum('INSURANCE', 'TRANSPORT', 'LEISURE', 'FOOD', 'DIGITAL', 'HOUSING', 'HEALTH', 'TAXES', 'ANIMALS', 'CHILDREN', 'OTHER')">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="user_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="created_at" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint
+            baseTableName="rp_income"
+            baseColumnNames="user_id"
+            constraintName="income_user_fk"
+            referencedTableName="rp_user"
+            referencedColumnNames="id"
+            onDelete="CASCADE"
+        />
+    </changeSet>
+
+</databaseChangeLog>
