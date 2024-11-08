@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "createdAt": "2024-09-09T00:14:39.127Z",
+    "updatedAt": "2024-10-23T00:14:39.128Z",
+    "username": "John Doe",
+    "password": "$2a$12$gea,fgea4f1az566/azf1az4faz84a1aa",
+    "email": "john.doe@gmail.com",
+    "role": "ROLE_USER",
+    "theme": 0,
+    "periodType": 0,
+    "isEditWarnEnabled": true,
+    "totalExpensesAmount": 1000,
+    "expenses": [
+      {
+        "id": 1,
+        "userId": 1,
+        "name": "Test Dépense 1",
+        "category": "CHILDREN",
+        "date": "2024-11-01T00:14:39.128Z",
+        "amount": 400,
+        "createdAt": "2024-11-01T00:14:39.128Z",
+        "updatedAt": "2024-11-01T00:14:39.128Z"
+      },
+      {
+        "id": 2,
+        "userId": 1,
+        "name": "Test Dépense 2",
+        "category": "DIGITAL",
+        "date": "2024-10-25T00:14:39.128Z",
+        "amount": 200,
+        "createdAt": "2024-11-04T00:14:39.128Z",
+        "updatedAt": "2024-11-04T00:14:39.128Z"
+      },
+      {
+        "id": 2,
+        "userId": 1,
+        "name": "Test Dépense 2",
+        "category": "TAXES",
+        "date": "2024-11-02T00:14:39.128Z",
+        "amount": 400,
+        "createdAt": "2024-11-03T00:14:39.128Z",
+        "updatedAt": "2024-11-03T00:14:39.128Z"
+      }
+    ]
+  }
+]
