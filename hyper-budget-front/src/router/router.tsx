@@ -1,7 +1,7 @@
 import { queryClient } from "@/api/Request";
-import DashboardHomePage from "@/scene/dashboard/DashboardHomePage";
-import ErrorPage from "@scene/error/ErrorPage";
-import WelcomePage from "@scene/WelcomePage";
+import DashboardHomePage from "@scene/private/dashboard/DashboardHomePage";
+import ErrorPage from "@scene/public/error/ErrorPage";
+import WelcomePage from "@scene/public/WelcomePage";
 import { createBrowserRouter, Outlet } from "react-router-dom";
 import { loader } from "./loader";
 import UserService from "@/api/services/UserService";

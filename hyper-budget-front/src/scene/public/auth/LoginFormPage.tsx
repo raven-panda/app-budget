@@ -51,7 +51,7 @@ export default function LoginFormPage() {
             type="email"
             label="Adresse email"
             formSubmitted={!isValid}
-            pattern={/^(.)+@[a-z0-9\.\-]+\.[a-z]{2,4}$/}
+            pattern={/^(.)+@[a-z0-9.-]+\.[a-z]{2,4}$/}
             patternMessage="Veuillez entrer une adresse email valide, ex : john.doe@gmail.com"
           />
           <FormTextField 
